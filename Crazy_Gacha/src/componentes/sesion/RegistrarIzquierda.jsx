@@ -1,44 +1,54 @@
 import React from 'react'
+import useProveedorSesion from '../hooks/useProveedorSesion.js'
+import { TEInput, TERipple } from 'tw-elements-react'
+import Logo from '../../resources/Logo.png'
+import { useNavigate } from 'react-router-dom'
 
 const RegistrarIzquierda = () => {
+    const {actualizarUsuario, registrarUsuario, datos, cargando, error} = useProveedorSesion();
+    const navegar = useNavigate(null);
+
     return (
         <>
-        <div className="px-4 md:px-0 lg:w-6/12">
-            <div className="md:mx-6 md:p-12">
+        <div className="px-4 md:px-0 lg:w-6/12 flex items-center justify-center">
+            <div className="md:mx-6 md:p-12 w-full">
                 {/* Logo */}
                 <div className="text-center">
                     <img
                         className="mx-auto w-48"
-                        src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                        src={Logo}
                         alt="logo"
                     />
-                    <h4 className="mb-12 mt-1 pb-1 text-xl font-semibold">
-                        We are The Lotus Team
-                    </h4>
                 </div>
 
                 <form>
-                    <p className="mb-4">Please register an account</p>
+                    <p className="mb-4">Registra tu cuenta</p>
 
                     {/* Input de correo electrónico */}
                     <TEInput
                         type="email"
-                        label="Email"
+                        label="Correo electrónico"
                         className="mb-4"
+                        name='email'
+                        onChange={(e)=>{actualizarUsuario(e)}}
                     ></TEInput>
 
                     {/* Input de username */}
                     <TEInput
                         type="text"
-                        label="Username"
+                        label="Nombre de usuario"
                         className="mb-4"
+                        name='name'
+                        onChange={(e)=>{actualizarUsuario(e)}}
                     ></TEInput>
 
                     {/* Input de contraseña */}
                     <TEInput
                         type="password"
-                        label="Password"
+                        label="Contraseña"
                         className="mb-4"
+                        name='password'
+                        onChange={(e)=>{actualizarUsuario(e)}}
                     ></TEInput>
 
                     {/* Botón de registro */}
@@ -49,35 +59,38 @@ const RegistrarIzquierda = () => {
                                 type="button"
                                 style={{
                                     background:
-                                        "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
+                                        "linear-gradient(to right, #1e3a8a, #1e40af)", // Cambia el color del botón a azul oscuro
                                 }}
+                                onClick={() => { registrarUsuario() }}
                             >
-                                Sign up
+                                Registrarse
                             </button>
                         </TERipple>
-
-                        {/* Enlace de términos y condiciones */}
-                        <a href="#!">Terms and conditions</a>
                     </div>
 
                     {/* Botón de login */}
                     <div className="flex items-center justify-between pb-6">
-                        <p className="mb-0 mr-2">Have an account?</p>
+                        <p className="mb-0 mr-2">¿Ya tienes una cuenta?</p>
                         <TERipple rippleColor="light">
                             <button
                                 type="button"
-                                className="inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-danger-600 focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
-                                onClick={() => { navegar('/') }}
+                                className="inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-black focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+                                onClick={() => { navegar('/login') }}
                             >
-                                Login
+                                Iniciar sesión
                             </button>
                         </TERipple>
                     </div>
+                    {cargando && <p>Registrando usuario...</p>}
+                    {error && <p style={{ color: "red" }}>Error: {error}</p>}
+                    {Array.isArray(datos) && datos.length > 0 && (
+                        <p style={{ color: "green" }}>Usuario registrado correctamente</p>
+                    )}
                 </form>
             </div>
         </div>
         </>
     )
-    }
+}
 
 export default RegistrarIzquierda

@@ -1,38 +1,33 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TEInput, TERipple } from 'tw-elements-react';
+import RegistrarIzquierda from '../sesion/RegistrarIzquierda.jsx';
 
 const Registrar = () => {
-    const navegar = useNavigate(null);
-
     return (
         <>
-            <section className="h-full bg-neutral-200 dark:bg-neutral-700">
-                <div className="container h-full p-10">
-                    <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
-                        <div className="w-full">
+            <section className="min-h-screen flex items-center justify-center bg-neutral-200 dark:bg-neutral-700">
+                <div className="container mx-auto p-10">
+                    <div className="flex flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
+                        <div className="w-full max-w-6xl"> {/* Aumenta el tamaño máximo del contenedor */}
                             <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
-                                <div className="g-0 lg:flex lg:flex-wrap">
+                                <div className="lg:flex lg:flex-wrap">
                                     {/* Columna izquierda */}
-                                    
+                                    <RegistrarIzquierda/>
 
                                     {/* Columna derecha */}
                                     <div
-                                        className="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none"
+                                        className="flex items-center justify-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none"
                                         style={{
                                             background:
-                                                "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
+                                                "linear-gradient(to right, #a1c4fd, #c2e9fb)", // Cambia el gradiente a azul claro a azul oscuro
                                         }}
                                     >
-                                        <div className="px-4 py-6 text-white md:mx-6 md:p-12">
+                                        <div className="px-4 py-6 text-black md:mx-6 md:p-12"> {/* Cambia el color del texto a negro */}
                                             <h4 className="mb-6 text-xl font-semibold">
-                                                We are more than just a company
+                                                Crazy Gacha
                                             </h4>
                                             <p className="text-sm">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                                sed do eiusmod tempor incididunt ut labore et dolore magna
-                                                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                                ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                                En Crazy Gacha, cada clic te acerca a la sorpresa. Rompe huevos de pascua para descubrir premios únicos, véndelos para conseguir monedas y mejora tu velocidad de apertura. Cuanto más juegues, más rápido progresarás, desbloqueando huevos especiales con mayores recompensas. ¡Haz crecer tu colección y optimiza tu estrategia para convertirte en el maestro del gacha!
                                             </p>
                                         </div>
                                     </div>
