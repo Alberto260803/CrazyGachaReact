@@ -1,14 +1,13 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import IniciarSesionIzquierda from '../sesion/IniciarSesionIzquierda';
 
 const IniciarSesion = () => {
     return (
         <>
-        <section className="min-h-screen flex items-center justify-center bg-neutral-200 dark:bg-neutral-700">
+        <section className="min-h-screen flex items-center justify-center bg-neutral-200 dark:bg-neutral-700 overflow-hidden">
             <div className="container mx-auto p-10">
                 <div className="flex flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
-                    <div className="w-full max-w-6xl"> {/* Aumenta el tamaño máximo del contenedor */}
+                    <div className="w-full max-w-6xl">
                         <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
                             <div className="lg:flex lg:flex-wrap">
                                 <IniciarSesionIzquierda/>
@@ -19,7 +18,7 @@ const IniciarSesion = () => {
                                         "linear-gradient(to right, #a1c4fd, #c2e9fb)", // Cambia el gradiente a azul claro a azul oscuro
                                     }}
                                 >
-                                    <div className="px-4 py-6 text-black md:mx-6 md:p-12"> {/* Cambia el color del texto a negro */}
+                                    <div className="px-4 py-6 text-black md:mx-6 md:p-12">
                                         <h4 className="mb-6 text-xl font-semibold">
                                         Crazy Gacha
                                         </h4>

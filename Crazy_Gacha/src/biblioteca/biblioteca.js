@@ -1,5 +1,5 @@
 // Función para gestionar datos de manera asíncrona
-const gestionarDatos = async (url, method, body = null, setError, token = "") => {
+const gestionarDatos = async (url, method, body = null, token = "") => {
     const headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
@@ -17,12 +17,12 @@ const gestionarDatos = async (url, method, body = null, setError, token = "") =>
 
         if (!response.ok) {
             const errorDetails = await response.json();
-            setError(`Error: ${response.status} - ${response.statusText} - ${JSON.stringify(errorDetails)}`);
+            return { success: false, message: `Error: ${response.status} - ${response.statusText}`, details: errorDetails };
         } else {
             return await response.json();
         }
     } catch (error) {
-        setError(error.message);
+        return { success: false, message: `Error: ${error.message}` };
     }
 };
 

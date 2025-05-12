@@ -7,14 +7,15 @@ const ProveedorSesion = ({children}) => {
     const usuarioInicial = {
         "name":"",
         "email":"",
-        "password":""
+        "password":"",
+        "money":0,
     };
     const sesionIniciadaInicial = false;
 
     const [usuario, setUsuario] = useState(usuarioInicial);
     const [sesionIniciada, setSesionIniciada] = useState(sesionIniciadaInicial);
 
-    const {datos, error, cargando, obtenerDatos} = useDatos();
+    const {datos, error, cargando, obtenerDatos, token} = useDatos();
     const navegar = useNavigate(null);
 
     // Función para actualizar los datos del usuario.
@@ -28,31 +29,35 @@ const ProveedorSesion = ({children}) => {
         const method = "POST";
         const body = usuario;
 
-        await obtenerDatos(url, method, body);
-        if(!error.length>0){
+        const respuesta = await obtenerDatos(url, method, body);
+
+        if (respuesta && respuesta.token) {
             navegar("/");
             setSesionIniciada(true);
-        };
+        } else {
+            setSesionIniciada(false);
+        }
     };
 
     const iniciarSesion = async () => {
         const url = "http://localhost:8087/api/login"; 
         const method = "POST";
-        
         const { email, ...body } = usuario;
-    
-        await obtenerDatos(url, method, body);
-        if (!error.length>0) {
-          navegar("/");
-          setSesionIniciada(true);
-        };
+        const respuesta = await obtenerDatos(url, method, body);
+
+        if (respuesta && respuesta.token) {
+            navegar("/");
+            setSesionIniciada(true);
+        } else {
+            setSesionIniciada(false);
+        }
     };
 
     const cerrarSesion = async () => {
         const url = "http://localhost:8087/api/logout";
         const method = "POST";
 
-        await obtenerDatos(url, method);
+        await obtenerDatos(url, method, null);
         setSesionIniciada(false);
     };
 

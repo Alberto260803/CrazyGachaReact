@@ -17,13 +17,20 @@ const useDatos = () => {
         setError(errorInicial);
     
         try {
-            const informacion = await gestionarDatos(url, method, body, setError, token);
-            if (informacion.token) {
-                setToken(informacion.token); // Guardar el token si la respuesta lo tiene
+            const informacion = await gestionarDatos(url, method, body, token);
+            
+            if (informacion && informacion.data !== null) {
+                if (informacion.token) {
+                    setToken(informacion.token); // Guardar el token si la respuesta lo tiene
+                }
+                setDatos(informacion);
+            } else {
+                setError(informacion.message || "Error desconocido");
             }
-            setDatos(informacion);
+
+            return informacion; // Retornar la información para su uso posterior
         } catch (error) {
-            setError(error.message);
+            setError(error.message || "Error desconocido");
         } finally {
             setCargando(false);
         }
