@@ -1,3 +1,27 @@
 html, body {
     overflow: hidden;
 }
+
+body.modo-nocturno .bg-white {
+    background-color: #ddd !important; /* Gris claro */
+}
+
+body.modo-nocturno .border-blue-300 {
+    border-color: #444 !important; /* Gris oscuro */
+}
+
+body.modo-nocturno .from-blue-100 {
+    --tw-gradient-from: #aaa !important; /* Degradado más suave */
+}
+
+body.modo-nocturno .to-blue-300 {
+    --tw-gradient-to: #bbb !important;
+}
+
+body.modo-nocturno .from-blue-400 {
+    --tw-gradient-from: #666 !important;
+}
+
+body.modo-nocturno .to-blue-600 {
+    --tw-gradient-to: #444 !important;
+}

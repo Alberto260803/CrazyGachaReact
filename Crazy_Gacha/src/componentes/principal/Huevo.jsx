@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import imagenEgg from '../../resources/egg.png';
 import './Huevo.css';
 
@@ -14,10 +14,12 @@ const Huevo = ({ contador, clicarHuevo }) => {
     }, [contador]);
 
     return (
-        <div className="flex-1 flex flex-col items-center justify-center pb-4 min-h-0">
+        <div className="flex flex-col items-center justify-center mt-12 flex-grow">
+            {/* Contador */}
             <div className="font-['Karma_Future'] text-6xl font-bold mb-8">{contador}</div>
+            {/* Huevo */}
             <div
-                className={`w-[65vmin] h-[65vmin] cursor-pointer flex items-center justify-center ${
+                className={`w-[65vmin] h-[55vmin] cursor-pointer flex items-center justify-center ${
                     animar ? 'huevo-shake' : ''
                 }`}
             >

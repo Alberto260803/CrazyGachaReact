@@ -9,10 +9,9 @@ const useDatos = () => {
     const [datos, setDatos] = useState(datosIniciales);
     const [error, setError] = useState(errorInicial);
     const [cargando, setCargando] = useState(cargandoInicial);
-    const [token, setToken] = useState("");
     
 
-    const obtenerDatos = async (url, method, body = null) => {
+    const obtenerDatos = async (url, method, body = null, token = "") => {
         setCargando(true);
         setError(errorInicial);
     
@@ -20,9 +19,6 @@ const useDatos = () => {
             const informacion = await gestionarDatos(url, method, body, token);
             
             if (informacion && informacion.data !== null) {
-                if (informacion.token) {
-                    setToken(informacion.token); // Guardar el token si la respuesta lo tiene
-                }
                 setDatos(informacion);
             } else {
                 setError(informacion.message || "Error desconocido");
@@ -36,7 +32,7 @@ const useDatos = () => {
         }
     };
 
-    return {datos,error,cargando, obtenerDatos, token};
+    return {datos,error,cargando,obtenerDatos};
 };
 
 export default useDatos;

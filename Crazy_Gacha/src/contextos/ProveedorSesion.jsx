@@ -1,4 +1,4 @@
-import React, { createContext, use, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import useDatos from '../componentes/hooks/useDatos.js';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,8 +14,11 @@ const ProveedorSesion = ({children}) => {
 
     const [usuario, setUsuario] = useState(usuarioInicial);
     const [sesionIniciada, setSesionIniciada] = useState(sesionIniciadaInicial);
+    const [token, setToken] = useState("");
+    const [idUsuario, setIdUsuario] = useState(0);
+    const [usuarioPendiente, setUsuarioPendiente] = useState(null);
 
-    const {datos, error, cargando, obtenerDatos, token} = useDatos();
+    const {error, cargando, obtenerDatos} = useDatos();
     const navegar = useNavigate(null);
 
     // Función para actualizar los datos del usuario.
@@ -32,6 +35,9 @@ const ProveedorSesion = ({children}) => {
         const respuesta = await obtenerDatos(url, method, body);
 
         if (respuesta && respuesta.token) {
+            setToken(respuesta.token);
+            setIdUsuario(respuesta.data.id);
+            setUsuarioPendiente(respuesta.data.id);
             navegar("/");
             setSesionIniciada(true);
         } else {
@@ -46,6 +52,9 @@ const ProveedorSesion = ({children}) => {
         const respuesta = await obtenerDatos(url, method, body);
 
         if (respuesta && respuesta.token) {
+            setToken(respuesta.token);
+            setIdUsuario(respuesta.data.id);
+            setUsuarioPendiente(respuesta.data.id);
             navegar("/");
             setSesionIniciada(true);
         } else {
@@ -57,20 +66,44 @@ const ProveedorSesion = ({children}) => {
         const url = "http://localhost:8087/api/logout";
         const method = "POST";
 
-        await obtenerDatos(url, method, null);
+        await obtenerDatos(url, method, null, token);
         setSesionIniciada(false);
+        setToken("");
     };
+
+    const obtenerUsuario = async (id) => {
+        const url = `http://localhost:8087/api/users/${id}`;
+        const method = "GET";
+
+        const respuesta = await obtenerDatos(url, method, null, token);
+
+        if (respuesta) {
+            setUsuario(respuesta.data);
+        } else {
+            setUsuario(usuarioInicial);
+        }
+    };
+
+    // Efecto que se dispara cuando hay token y usuarioPendiente
+    useEffect(() => {
+        if (token && usuarioPendiente) {
+            obtenerUsuario(usuarioPendiente);
+            setUsuarioPendiente(null); // Limpia el pendiente
+        }
+    }, [token, usuarioPendiente]);
 
     const datosProveer = {
         actualizarUsuario,
         usuario,
         registrarUsuario,
-        datos,
         error,
         cargando,
         sesionIniciada,
         iniciarSesion,
-        cerrarSesion
+        cerrarSesion,
+        token,
+        idUsuario,
+        obtenerUsuario
     };
 
     return (

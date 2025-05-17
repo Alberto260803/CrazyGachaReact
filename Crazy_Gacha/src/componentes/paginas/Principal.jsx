@@ -1,14 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
-import imagenUsuario from '../../resources/usuario.png';
-import useProveedorSesion from '../hooks/useProveedorSesion.js';
-import audioBienvenida from '../../resources/cancion_fondo.mp3';
 import Tienda from '../principal/Tienda.jsx';
 import Huevo from '../principal/Huevo.jsx';
 import Premio from '../principal/Premio.jsx';
+import useProveedorPremios from '../hooks/useProveedorPremios.js';
+import useProveedorProdutos from '../hooks/useProveedorProductos.js';
+import Usuario from '../principal/Usuario.jsx';
+import Audio from '../principal/Audio.jsx';
+import useEfectosProductos from '../hooks/useEfectosProductos.js';
 
 const Principal = () => {
-    const { usuario, cerrarSesion } = useProveedorSesion();
     const audioRef = useRef(null);
+    
+    const { obtenerPremio } = useProveedorPremios();
+    const { obtenerProductos, obtenerProductosUsuario, productosUsuario } = useProveedorProdutos();
+    const { multiplicadorClics } = useEfectosProductos(productosUsuario)
+
     const [audioBloqueado, setAudioBloqueado] = useState(false);
 
     const contadorInicial = 5;
@@ -18,17 +24,17 @@ const Principal = () => {
 
     const clicarHuevo = () => {
         if (contador > 0) {
-            setContador(contador - 1);
+            setContador(prev => Math.max(0, prev - multiplicadorClics));
         }
     };
 
     // Detectar cuando el contador llega a 0
     useEffect(() => {
         if (contador === 0) {
-            // Esperar a que termine la animación antes de cambiar a Premio
             const timeout = setTimeout(() => {
                 setHaLlegadoACero(true);
                 setContador(contadorInicial); // Reiniciar el contador
+                obtenerPremio(); // Obtener un nuevo premio
             }, 1000); // Duración de la animación (1s)
 
             return () => clearTimeout(timeout); // Limpiar el timeout
@@ -42,6 +48,8 @@ const Principal = () => {
 
     // Intenta reproducir al cargar el componente
     useEffect(() => {
+        obtenerProductos();
+        obtenerProductosUsuario();
         const intentarReproducir = async () => {
             try {
                 audioRef.current.volume = 1;
@@ -62,79 +70,39 @@ const Principal = () => {
     }, []);
 
     // Función para reproducir manualmente
-    const forzarReproduccion = () => {
+    const forzarReproducir = () => {
         audioRef.current.play()
             .then(() => setAudioBloqueado(false))
             .catch(() => setAudioBloqueado(true));
     };
 
     return (
-        <div className="h-screen w-screen flex overflow-hidden box-border min-w-0">
-            {/* Elemento de audio */}
-            <audio 
-                ref={audioRef}
-                src={audioBienvenida}
-                loop
-                muted={false}
-            />
-
-            {/* Botón de emergencia para audio */}
-            {audioBloqueado && (
-                <div className="fixed bottom-4 right-4 bg-red-500 text-white p-3 rounded-lg shadow-xl animate-bounce z-50">
-                    <button 
-                        onClick={forzarReproducir}
-                        className="flex items-center gap-2 font-bold"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M16 20.334v-2.438a2.25 2.25 0 0 1 .94-1.827l3.379-2.454a2.25 2.25 0 0 0 .932-1.826V9.887a2.25 2.25 0 0 0-.932-1.826L16.94 5.607a2.25 2.25 0 0 1-.94-1.827V2.667h-.5a2.25 2.25 0 0 0-2.25 2.25v14.166a2.25 2.25 0 0 0 2.25 2.25h.5zM6.75 4.917a2.25 2.25 0 0 0-2.25 2.25v9.666a2.25 2.25 0 0 0 2.25 2.25H7.5V4.917H6.75z"/>
-                        </svg>
-                        ¡Haz clic para sonido!
-                    </button>
-                </div>
-            )}
+        <div className="h-screen w-screen flex overflow-hidden box-border bg-gradient-to-br from-blue-100 to-blue-300">
+            <Audio audioRef={audioRef} audioBloqueado={audioBloqueado} forzarReproducir={forzarReproducir} />
 
             {/* Sección Izquierda */}
-            <div className="flex-1 flex flex-col box-border min-w-0">
+            <div className="flex-1 flex flex-col box-border bg-white rounded-lg shadow-lg m-4 p-4 border border-blue-300 overflow-hidden">
                 <div className="p-4 box-border">
-                    <div className="flex items-center justify-between w-full">
-                        <div className="flex items-center gap-2">
-                            <img 
-                                src={imagenUsuario} 
-                                alt="Usuario" 
-                                className="w-12 h-12 object-contain"
-                            />
-                            <span className="font-['Karma_Future'] text-2xl">
-                                Hola, {usuario.name}
-                            </span>
-                        </div>
-                        <button 
-                            onClick={cerrarSesion}
-                            className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200 cursor-pointer"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
-                            </svg>
-                        </button>
-                    </div>
+                    <Usuario />
                 </div>
-                <div className="flex-1 flex flex-col box-border min-w-0 h-full overflow-hidden">
-                    {!haLlegadoACero
-                    ? (
-                        <Huevo contador={contador} clicarHuevo={clicarHuevo}/>
-                    )
-                    : (
-                        <div className="flex-1 min-w-0 w-full h-full overflow-auto">
-                        <Premio resetearEstado={resetearEstado}/>
+                <div className="flex-1 flex flex-col box-border h-full overflow-hidden">
+                    {!haLlegadoACero ? (
+                        <Huevo contador={contador} clicarHuevo={clicarHuevo} />
+                    ) : (
+                        <div className="flex-1 min-w-0 w-full overflow-hidden">
+                            <Premio resetearEstado={resetearEstado} />
                         </div>
-                    )
-                    } 
+                    )}
                 </div>
             </div>
 
             {/* Separador */}
-            <div className="h-full w-[2px] bg-black/20 my-4" />
+            <div className="h-[95%] w-[2px] bg-gradient-to-b from-blue-400 to-blue-600 my-auto" />
 
-            <Tienda/>
+            {/* Tienda */}
+            <div className="flex-1 bg-white rounded-lg shadow-lg m-4 p-4 border border-blue-300 overflow-hidden">
+                <Tienda />
+            </div>
         </div>
     );
 };
