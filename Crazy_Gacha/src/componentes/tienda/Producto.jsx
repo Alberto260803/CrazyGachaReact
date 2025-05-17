@@ -5,7 +5,7 @@ import useProveedorSesion from '../hooks/useProveedorSesion.js';
 
 const Producto = ({ cantidad, datos }) => {
     const { comprarProducto } = useProveedorProdutos();
-    const { usuario, obtenerUsuario, idUsuario } = useProveedorSesion();
+    const { usuario } = useProveedorSesion();
     const { id, name, price, linkImage } = datos;
     const [comprando, setComprando] = useState(false);
 

@@ -1,28 +1,20 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import useProveedorSesion from '../hooks/useProveedorSesion.js';
 import useProveedorPremios from '../hooks/useProveedorPremios.js';
+import useProveedorModoNocturno from '../hooks/useProveedorManejadores.js';
 
 const BotonesUsuario = () => {
     const { cerrarSesion, cargando } = useProveedorSesion();
     const { obtenerPremiosUsuario } = useProveedorPremios();
+    const { modoNocturno, setModoNocturno } = useProveedorModoNocturno();
 
     const navegar = useNavigate(null);
-    const [modoNocturno, setModoNocturno] = useState(false);
 
     const navegarInventarioUsuario = () => {
         obtenerPremiosUsuario();
         navegar('/inventario');
     };
-
-    // Cambiar la clase del body según el modo nocturno
-    useEffect(() => {
-        if (modoNocturno) {
-            document.body.classList.add('modo-nocturno');
-        } else {
-            document.body.classList.remove('modo-nocturno');
-        }
-    }, [modoNocturno]);
 
     return (
         <>

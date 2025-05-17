@@ -60,7 +60,7 @@ const Premio = ({ resetearEstado }) => {
                     </div>
 
                     <h2 className={`font-['Karma_Future'] text-center
-                        text-2xl sm:text-3xl md:text-[2rem] lg:text-[2.5rem]
+                        text-2xl sm:text-3xl md:text-[1rem] lg:text-[1.5rem]
                         font-bold mb-6
                         transition-all duration-300
                         break-words max-w-[90%] // Limitar el ancho del texto y permitir ajuste de línea

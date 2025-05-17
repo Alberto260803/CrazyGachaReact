@@ -19,7 +19,7 @@ const ProveedorPremios = ({children}) => {
 
     const [premio, setPremio] = useState(premioInicial);
 
-    const {cargando, obtenerDatos} = useDatos();
+    const {error, cargando, obtenerDatos} = useDatos();
 
     const obtenerPremio = async () => {
         const url = "http://localhost:8087/api/prizes/random";
@@ -49,17 +49,24 @@ const ProveedorPremios = ({children}) => {
     const venderRepetidos = async (idPremio) => {
         const url = `http://localhost:8087/api/prizes/${idPremio}/sell`;
         const method = "POST";
+        const respuesta = await obtenerDatos(url, method, null, token);
 
-        await obtenerDatos(url, method, null, token);
+        if (respuesta.message && respuesta.data === null) {
+            return respuesta?.message
+        }
+        // Solo refresca si no hay error
         await obtenerUsuario(idUsuario);
         await obtenerPremiosUsuario();
+        return null;
     };
 
     const venderTodosRepetidos = async () => {
         const url = `http://localhost:8087/api/prizes/sellAllDuplicates`;
         const method = "POST";
-
-        await obtenerDatos(url, method, null, token);
+        const respuesta = await obtenerDatos(url, method, null, token);
+        if(respuesta.message && respuesta.data === null) {
+            return respuesta?.message
+        }
         await obtenerUsuario(idUsuario);
         await obtenerPremiosUsuario();
     };
@@ -71,7 +78,8 @@ const ProveedorPremios = ({children}) => {
         obtenerPremiosUsuario,
         premiosUsuario,
         venderRepetidos,
-        venderTodosRepetidos
+        venderTodosRepetidos,
+        error
     }
 
     return (

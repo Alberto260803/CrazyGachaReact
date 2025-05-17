@@ -1,6 +1,6 @@
 const useEfectosProductos = (productosUsuario) => {
     const cursor = productosUsuario?.find(p => p.name === "+1 clic");
-    const multiplicadorClics = cursor ? cursor.pivot.count : 1;
+    const multiplicadorClics = cursor ? (cursor.pivot.count+1) : 1;
 
     return {
         multiplicadorClics

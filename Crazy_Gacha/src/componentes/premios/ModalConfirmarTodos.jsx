@@ -1,25 +1,23 @@
 import Swal from 'sweetalert2';
-import useProveedorPremios from '../hooks/useProveedorPremios.js';
-import useProveedorSesion from '../hooks/useProveedorSesion.js';
+import useProveedorPremios from '../hooks/useProveedorPremios';
 import { useEffect } from 'react';
 
-const ModalConfirmar = ({ datos, quitarModal }) => {
-    const { venderRepetidos } = useProveedorPremios();
-    const { obtenerUsuario, idUsuario } = useProveedorSesion();
+const ModalConfirmarTodos = ({ quitarModal }) => {
+    const { venderTodosRepetidos } = useProveedorPremios();
 
     useEffect(() => {
         Swal.fire({
-            title: "¿Seguro que quieres vender este premio?",
+            title: "¿Seguro que quieres vender todos los premios repetidos?",
             text: "No podrás deshacer esta acción.",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#22c55e",
             cancelButtonColor: "#6b7280",
-            confirmButtonText: "Sí, vender",
+            confirmButtonText: "Sí, vender todos",
             cancelButtonText: "Cancelar"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                // Mostrar animación de carga
+                // Animación de carga
                 Swal.fire({
                     title: "Vendiendo...",
                     html: `<div class="flex justify-center items-center">
@@ -31,7 +29,7 @@ const ModalConfirmar = ({ datos, quitarModal }) => {
                     allowEscapeKey: false,
                 });
 
-                const error = await venderRepetidos(datos.id);
+                const error = await venderTodosRepetidos();
 
                 if (error) {
                     Swal.fire({
@@ -42,10 +40,9 @@ const ModalConfirmar = ({ datos, quitarModal }) => {
                         quitarModal();
                     });
                 } else {
-                    await obtenerUsuario(idUsuario);
                     Swal.fire({
-                        title: "¡Vendido!",
-                        text: "El premio ha sido vendido.",
+                        title: "¡Vendidos!",
+                        text: "Todos los premios repetidos han sido vendidos.",
                         icon: "success",
                         confirmButtonColor: "#22c55e"
                     }).then(() => {
@@ -56,10 +53,9 @@ const ModalConfirmar = ({ datos, quitarModal }) => {
                 quitarModal();
             }
         });
-        // eslint-disable-next-line
     }, []);
 
     return null;
 };
 
-export default ModalConfirmar;
+export default ModalConfirmarTodos;

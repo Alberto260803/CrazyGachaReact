@@ -5,22 +5,21 @@ import Premio from '../principal/Premio.jsx';
 import useProveedorPremios from '../hooks/useProveedorPremios.js';
 import useProveedorProdutos from '../hooks/useProveedorProductos.js';
 import Usuario from '../principal/Usuario.jsx';
-import Audio from '../principal/Audio.jsx';
 import useEfectosProductos from '../hooks/useEfectosProductos.js';
+import ControlVolumen from '../principal/ControlVolumen.jsx';
 
 const Principal = () => {
-    const audioRef = useRef(null);
-    
     const { obtenerPremio } = useProveedorPremios();
     const { obtenerProductos, obtenerProductosUsuario, productosUsuario } = useProveedorProdutos();
     const { multiplicadorClics } = useEfectosProductos(productosUsuario)
 
-    const [audioBloqueado, setAudioBloqueado] = useState(false);
-
     const contadorInicial = 5;
     const [contador, setContador] = useState(contadorInicial);
-
     const [haLlegadoACero, setHaLlegadoACero] = useState(false);
+
+    useEffect(() => {
+        setContador(contadorInicial);
+    }, [multiplicadorClics]);
 
     const clicarHuevo = () => {
         if (contador > 0) {
@@ -50,38 +49,13 @@ const Principal = () => {
     useEffect(() => {
         obtenerProductos();
         obtenerProductosUsuario();
-        const intentarReproducir = async () => {
-            try {
-                audioRef.current.volume = 1;
-                await audioRef.current.play();
-            } catch (error) {
-                setAudioBloqueado(true);
-            }
-        };
-
-        intentarReproducir();
-
-        return () => {
-            if (audioRef.current) {
-                audioRef.current.pause();
-                audioRef.current.currentTime = 0;
-            }
-        };
     }, []);
-
-    // Función para reproducir manualmente
-    const forzarReproducir = () => {
-        audioRef.current.play()
-            .then(() => setAudioBloqueado(false))
-            .catch(() => setAudioBloqueado(true));
-    };
 
     return (
         <div className="h-screen w-screen flex overflow-hidden box-border bg-gradient-to-br from-blue-100 to-blue-300">
-            <Audio audioRef={audioRef} audioBloqueado={audioBloqueado} forzarReproducir={forzarReproducir} />
-
             {/* Sección Izquierda */}
-            <div className="flex-1 flex flex-col box-border bg-white rounded-lg shadow-lg m-4 p-4 border border-blue-300 overflow-hidden">
+            <div className="flex-1 flex flex-col box-border bg-white rounded-lg shadow-lg m-4 p-4 border border-blue-300 overflow-hidden relative">
+                <ControlVolumen />
                 <div className="p-4 box-border">
                     <Usuario />
                 </div>
@@ -95,10 +69,8 @@ const Principal = () => {
                     )}
                 </div>
             </div>
-
             {/* Separador */}
             <div className="h-[95%] w-[2px] bg-gradient-to-b from-blue-400 to-blue-600 my-auto" />
-
             {/* Tienda */}
             <div className="flex-1 bg-white rounded-lg shadow-lg m-4 p-4 border border-blue-300 overflow-hidden">
                 <Tienda />
