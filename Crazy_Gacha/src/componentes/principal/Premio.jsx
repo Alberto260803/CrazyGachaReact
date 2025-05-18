@@ -34,7 +34,7 @@ const Premio = ({ resetearEstado }) => {
         Legendaria: 'text-yellow-400',
     };
 
-    const colorRareza = premio.rarity ? rarityStyles[premio.rarity] : "Común";
+    const colorRareza = premio?.rarity ? rarityStyles[premio.rarity] : "Común";
 
     return (
         <div

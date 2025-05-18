@@ -1,13 +1,11 @@
-import { useState } from 'react';
 import moneda from '../../resources/moneda.png';
 import useProveedorProdutos from '../hooks/useProveedorProductos.js';
 import useProveedorSesion from '../hooks/useProveedorSesion.js';
 
-const Producto = ({ cantidad, datos }) => {
-    const { comprarProducto } = useProveedorProdutos();
+const Producto = ({ cantidad, datos, onComprarHuevo }) => {
+    const { comprarProducto, comprando, setComprando } = useProveedorProdutos();
     const { usuario } = useProveedorSesion();
-    const { id, name, price, linkImage } = datos;
-    const [comprando, setComprando] = useState(false);
+    const { id, name, price, linkImage, type } = datos;   
 
     const puedeComprar = usuario?.money >= price;
 
@@ -16,6 +14,9 @@ const Producto = ({ cantidad, datos }) => {
         setComprando(true);
         await comprarProducto(id);
         setComprando(false);
+        if (type === "Egg" && onComprarHuevo) {
+            onComprarHuevo(datos);
+        }
     };
 
     return (
@@ -49,8 +50,8 @@ const Producto = ({ cantidad, datos }) => {
                 </div>
             </div>
             <div className="text-2xl text-gray-800 font-['Karma_Future']">
-                {comprando ? (
-                    <span className="animate-spin inline-block w-6 h-6 border-4 border-blue-400 border-t-transparent rounded-full"></span>
+                {type === "Egg" ? (
+                    ""
                 ) : (
                     cantidad
                 )}

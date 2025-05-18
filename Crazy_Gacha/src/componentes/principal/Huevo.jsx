@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import imagenEgg from '../../resources/egg.png';
+import { useEffect, useState } from 'react';
 import './Huevo.css';
+import useProveedorProdutos from '../hooks/useProveedorProductos';
 
-const Huevo = ({ contador, clicarHuevo }) => {
+const Huevo = ({ contador, clicarHuevo, imagenHuevo }) => {
     const [animar, setAnimar] = useState(false);
+    const {comprando} = useProveedorProdutos()
 
     useEffect(() => {
         if (contador === 0) {
@@ -24,10 +25,10 @@ const Huevo = ({ contador, clicarHuevo }) => {
                 }`}
             >
                 <img
-                    src={imagenEgg}
+                    src={imagenHuevo}
                     alt="Huevo"
                     className="w-full h-full object-contain hover:scale-105 transition-transform duration-200"
-                    onClick={() => clicarHuevo()}
+                    onClick={() => !comprando && clicarHuevo()}
                 />
             </div>
         </div>

@@ -9,6 +9,7 @@ const ProveedorProductos = ({children}) => {
     const productosIniciales = [];
     const [productosUsuario, setProductosUsuario] = useState(productosIniciales);
     const [productos, setProductos] = useState(productosIniciales);
+    const [comprando, setComprando] = useState(false);
 
     const {cargando, obtenerDatos} = useDatos();
 
@@ -53,7 +54,9 @@ const ProveedorProductos = ({children}) => {
         obtenerProductos,
         obtenerProductosUsuario,
         productosUsuario,
-        comprarProducto
+        comprarProducto,
+        comprando,
+        setComprando
     }
 
     return (

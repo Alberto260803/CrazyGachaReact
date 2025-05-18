@@ -28,7 +28,7 @@ const ControlVolumen = () => {
                 step="0.01"
                 value={volumen}
                 onChange={handleChange}
-                className="w-24 accent-blue-500"
+                className="w-24 accent-blue-500 cursor-pointer"
             />
         </div>
     );

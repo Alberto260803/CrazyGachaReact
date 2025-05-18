@@ -45,7 +45,7 @@ const IniciarSesionIzquierda = () => {
                             ></TEInput>
                             <button
                                 type="button"
-                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer"
                                 onClick={() => setMostrarContrasena(!mostrarContrasena)}
                             >
                                 {mostrarContrasena ? (
@@ -79,9 +79,6 @@ const IniciarSesionIzquierda = () => {
                                     Iniciar Sesión
                                 </button>
                             </TERipple>
-
-                            {/* <!--Forgot password link--> */}
-                            <a href="#!">¿Te has olvidado de la contraseña?</a>
                         </div>
 
                         {/* <!--Register button--> */}
@@ -90,7 +87,7 @@ const IniciarSesionIzquierda = () => {
                             <TERipple rippleColor="light">
                                 <button
                                     type="button"
-                                    className="inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-black focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+                                    className="inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-black focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10 cursor-pointer"
                                     onClick={() => { navegar('/register') }}
                                 >
                                     Registrarse

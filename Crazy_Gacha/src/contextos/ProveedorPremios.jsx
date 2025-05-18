@@ -26,9 +26,10 @@ const ProveedorPremios = ({children}) => {
         const method = "GET";
 
         const respuesta = await obtenerDatos(url, method, null, token);
+        console.log(respuesta.data.probabilities)
 
         if (respuesta) {
-            setPremio(respuesta.data);
+            setPremio(respuesta.data.prize);
         } else {
             setPremio(premioInicial);
         }
@@ -54,7 +55,6 @@ const ProveedorPremios = ({children}) => {
         if (respuesta.message && respuesta.data === null) {
             return respuesta?.message
         }
-        // Solo refresca si no hay error
         await obtenerUsuario(idUsuario);
         await obtenerPremiosUsuario();
         return null;
