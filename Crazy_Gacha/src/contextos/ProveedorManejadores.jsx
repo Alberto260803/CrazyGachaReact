@@ -7,7 +7,7 @@ const ProveedorManejadores = ({children}) => {
     const {sesionIniciada} = useProveedorSesion()
 
     const [modoNocturno, setModoNocturno] = useState(false);
-    const [volumen, setVolumen] = useState(1);
+    const [volumen, setVolumen] = useState(0.5);
 
     const location = useLocation();
 

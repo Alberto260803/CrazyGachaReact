@@ -7,6 +7,7 @@ const ProveedorAudio = ({children}) => {
     const [audioBloqueado, setAudioBloqueado] = useState(false);
 
     audioRef.current.loop = true; // Repetir el audio
+    audioRef.current.volume = 0.5; // Volumen inicial
 
     // Función para reproducir el audio
     const reproducirAudio = () => {
