@@ -2,7 +2,7 @@ import React from 'react';
 import useProveedorProdutos from '../hooks/useProveedorProductos.js';
 import Producto from './Producto.jsx';
 
-const ListadoProductos = ({ tipo, onComprarHuevo }) => {
+const ListadoProductos = ({ tipo, onComprarHuevo, huevoPendiente }) => {
     const { productos, productosUsuario, cargando } = useProveedorProdutos();
 
     // Filtrar productos por tipo
@@ -27,6 +27,7 @@ const ListadoProductos = ({ tipo, onComprarHuevo }) => {
                                     datos={producto}
                                     cantidad={count}
                                     onComprarHuevo={onComprarHuevo}
+                                    huevoPendiente={huevoPendiente}
                                 />
                             );
                         })}

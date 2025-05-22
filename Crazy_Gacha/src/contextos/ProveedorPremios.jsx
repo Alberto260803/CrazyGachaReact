@@ -15,8 +15,9 @@ const ProveedorPremios = ({children}) => {
     };
 
     const premiosIniciales = [];
-    const [premiosUsuario, setPremiosUsuario] = useState(premiosIniciales);
+    const  vendidosIniciales = [];
 
+    const [premiosUsuario, setPremiosUsuario] = useState(premiosIniciales);
     const [premio, setPremio] = useState(premioInicial);
 
     const {error, cargando, obtenerDatos} = useDatos();
@@ -26,7 +27,6 @@ const ProveedorPremios = ({children}) => {
         const method = "GET";
 
         const respuesta = await obtenerDatos(url, method, null, token);
-        console.log(respuesta.data.probabilities)
 
         if (respuesta) {
             setPremio(respuesta.data.prize);
@@ -57,19 +57,21 @@ const ProveedorPremios = ({children}) => {
         }
         await obtenerUsuario(idUsuario);
         await obtenerPremiosUsuario();
-        return null;
     };
 
     const venderTodosRepetidos = async () => {
         const url = `http://localhost:8087/api/prizes/sellAllDuplicates`;
         const method = "POST";
         const respuesta = await obtenerDatos(url, method, null, token);
-        if(respuesta.message && respuesta.data === null) {
-            return respuesta?.message
+
+        if (respuesta.message && respuesta.data === null) {
+            return { error: respuesta.message }; // Retornar error
         }
+
         await obtenerUsuario(idUsuario);
         await obtenerPremiosUsuario();
-    };
+        return { vendidos: respuesta.vendidos };
+    }
 
     const datosProveer = {
         premio,
@@ -79,7 +81,7 @@ const ProveedorPremios = ({children}) => {
         premiosUsuario,
         venderRepetidos,
         venderTodosRepetidos,
-        error
+        error,
     }
 
     return (

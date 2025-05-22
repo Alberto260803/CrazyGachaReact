@@ -80,6 +80,8 @@ const Principal = () => {
         obtenerProductosUsuario();
     }, []);
 
+    const huevoPendiente = !haLlegadoACero && contador !== contadorInicial;
+
     return (
         <div className="h-screen w-screen flex overflow-hidden box-border bg-gradient-to-br from-blue-100 to-blue-300">
             {/* Sección Izquierda */}
@@ -106,7 +108,7 @@ const Principal = () => {
             <div className="h-[95%] w-[2px] bg-gradient-to-b from-blue-400 to-blue-600 my-auto" />
             {/* Tienda */}
             <div className="flex-1 bg-white rounded-lg shadow-lg m-4 p-4 border border-blue-300 overflow-hidden">
-                <Tienda onComprarHuevo={handleComprarHuevo} />
+                <Tienda onComprarHuevo={handleComprarHuevo} huevoPendiente={huevoPendiente}/>
             </div>
         </div>
     );

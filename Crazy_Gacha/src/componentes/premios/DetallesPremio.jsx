@@ -18,13 +18,13 @@ const DetallesPremio = ({ premio, onClose }) => {
             <div className="bg-white rounded-lg shadow-lg p-10 w-[28rem] relative">
                 {/* Imagen del premio */}
                 <img
-                    src={premio.image || 'https://via.placeholder.com/300'}
+                    src={premio.image || 'https://static.vecteezy.com/system/resources/previews/017/178/563/non_2x/cross-check-icon-symbol-on-transparent-background-free-png.png'}
                     alt={premio.name || 'Premio'}
-                    className="w-full h-80 object-contain mb-6"
+                    className="w-full h-80 object-cover mb-6 rounded-lg"
                 />
 
                 {/* Nombre del premio */}
-                <h2 className="text-3xl font-bold text-center text-blue-800 mb-4">
+                <h2 className="font-['Karma_Future'] text-3xl font-bold text-center text-blue-800 mb-4">
                     {premio.name || 'Nombre del premio'}
                 </h2>
 

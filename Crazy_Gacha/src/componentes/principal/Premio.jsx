@@ -38,7 +38,7 @@ const Premio = ({ resetearEstado }) => {
     return (
         <div
             ref={contenedorRef}
-            className="relative flex flex-col justify-between items-center w-full h-full min-h-0 p-4 sm:p-8 overflow-hidden box-border z-10"
+            className="relative flex flex-col justify-between items-center w-full h-full min-h-0 p-4 sm:p-8 overflow-hidden box-border z-10 mt-8"
         >
             {cargando ? (
                 <div className="flex items-center justify-center h-full">

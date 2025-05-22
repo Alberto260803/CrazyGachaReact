@@ -7,9 +7,9 @@ const PremioUsuario = ({ datos }) => {
         <>
             <div className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center gap-4 border border-blue-300 w-64">
                 <img
-                    src={datos.image || 'https://via.placeholder.com/150'}
+                    src={datos.image || 'https://static.vecteezy.com/system/resources/previews/017/178/563/non_2x/cross-check-icon-symbol-on-transparent-background-free-png.png'}
                     alt={datos.name || 'Premio'}
-                    className="w-32 h-32 object-contain"
+                    className="w-32 h-32 object-contain rounded-lg"
                 />
                 <h3 className="font-['Karma_Future'] text-lg text-gray-800 text-center h-12 flex items-center justify-center">
                     {datos.name || 'Nombre del premio'}

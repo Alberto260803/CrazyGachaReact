@@ -15,7 +15,7 @@ const TABS = [
     }
 ];
 
-const Tienda = ({onComprarHuevo}) => {
+const Tienda = ({onComprarHuevo, huevoPendiente}) => {
     const [tab, setTab] = useState("Clicks");
 
     return (
@@ -42,7 +42,7 @@ const Tienda = ({onComprarHuevo}) => {
                     ))}
                 </div>
             </div>
-            <ListadoProductos tipo={tab} onComprarHuevo={onComprarHuevo} />
+            <ListadoProductos tipo={tab} onComprarHuevo={onComprarHuevo} huevoPendiente={huevoPendiente}/>
         </div>
     );
 };

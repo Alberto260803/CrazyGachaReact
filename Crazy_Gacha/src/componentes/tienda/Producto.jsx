@@ -2,12 +2,13 @@ import moneda from '../../resources/moneda.png';
 import useProveedorProdutos from '../hooks/useProveedorProductos.js';
 import useProveedorSesion from '../hooks/useProveedorSesion.js';
 
-const Producto = ({ cantidad, datos, onComprarHuevo }) => {
+const Producto = ({ cantidad, datos, onComprarHuevo, huevoPendiente }) => {
     const { comprarProducto, comprando, setComprando } = useProveedorProdutos();
     const { usuario } = useProveedorSesion();
     const { id, name, price, linkImage, type } = datos;   
 
-    const puedeComprar = usuario?.money >= price;
+    const esHuevo = type === "Egg";
+    const puedeComprar = usuario?.money >= price && (!esHuevo || !huevoPendiente);
 
     const handleComprar = async () => {
         if (!puedeComprar) return;
