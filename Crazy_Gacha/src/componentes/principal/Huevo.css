@@ -9,3 +9,9 @@
 .huevo-shake {
     animation: shake 0.5s ease-in-out;
 }
+
+.huevo-roto {
+    filter: grayscale(0.7) brightness(0.7) contrast(1.2);
+    /* Puedes añadir más efectos */
+    position: relative;
+}

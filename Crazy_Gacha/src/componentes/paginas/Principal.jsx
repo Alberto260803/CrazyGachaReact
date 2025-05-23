@@ -12,7 +12,7 @@ import imagenHuevoNormal from '../../resources/egg.png';
 const Principal = () => {
     const { obtenerPremio } = useProveedorPremios();
     const { obtenerProductos, obtenerProductosUsuario, productosUsuario, comprando } = useProveedorProdutos();
-    const { multiplicadorClics, cantidadNido } = useEfectosProductos(productosUsuario);
+    const { multiplicadorClics, clicsAutomaticos, cantidadCritico } = useEfectosProductos(productosUsuario);
 
     const contadorInicial = 10;
     const [contador, setContador] = useState(contadorInicial);
@@ -20,12 +20,16 @@ const Principal = () => {
     const [imagenHuevo, setImagenHuevo] = useState(imagenHuevoNormal);
     const [pendienteImagenHuevo, setPendienteImagenHuevo] = useState(null);
     const [pendienteContador, setPendienteContador] = useState(null);
+    const [huevoComprado, setHuevoComprado] = useState(false);
 
     // Cuando el usuario compra un huevo, actualiza la imagen
     const handleComprarHuevo = (nuevoHuevo) => {
+        setHuevoComprado(true);
         let nuevoContador = contadorInicial;
         if (nuevoHuevo.name === "Huevo raro") nuevoContador = 50;
-        if (nuevoHuevo.name === "Huevo épico") nuevoContador = 100;
+        if (nuevoHuevo.name === "Huevo especial") nuevoContador = 100;
+        if (nuevoHuevo.name === "Huevo épico") nuevoContador = 250;
+        if (nuevoHuevo.name === "Huevo legendario") nuevoContador = 500;
         const nuevaImagen = nuevoHuevo.linkImage || imagenHuevoNormal;
 
         if (!haLlegadoACero) {
@@ -46,24 +50,28 @@ const Principal = () => {
         setPendienteContador(null);
     };
 
-    useEffect(() => {
-        setContador(contadorInicial);
-    }, [multiplicadorClics]);
-
     const clicarHuevo = () => {
         if (contador > 0) {
-            setContador(prev => Math.max(0, prev - multiplicadorClics));
+            let clics = multiplicadorClics;
+            if (cantidadCritico > 0) {
+                // Probabilidad de crítico: 10% por cada producto
+                const probabilidad = 0.1 * cantidadCritico;
+                if (Math.random() < probabilidad) {
+                    clics += 5;
+                }
+            }
+            setContador(prev => Math.max(0, prev - clics));
         }
     };
 
     useEffect(() => {
-        if (cantidadNido > 0 && contador > 0 && !haLlegadoACero && !comprando) {
+        if (clicsAutomaticos > 0 && contador > 0 && !haLlegadoACero && !comprando) {
             const interval = setInterval(() => {
-                setContador(prev => Math.max(0, prev - cantidadNido));
+                setContador(prev => Math.max(0, prev - clicsAutomaticos));
             }, 1000);
             return () => clearInterval(interval);
         }
-    }, [cantidadNido, contador, haLlegadoACero, comprando]);
+    }, [clicsAutomaticos, contador, haLlegadoACero, comprando]);
 
     useEffect(() => {
         if (contador === 0) {
@@ -80,7 +88,7 @@ const Principal = () => {
         obtenerProductosUsuario();
     }, []);
 
-    const huevoPendiente = !haLlegadoACero && contador !== contadorInicial;
+    const huevoPendiente = huevoComprado && !haLlegadoACero && contador !== contadorInicial;
 
     return (
         <div className="h-screen w-screen flex overflow-hidden box-border bg-gradient-to-br from-blue-100 to-blue-300">
@@ -93,7 +101,7 @@ const Principal = () => {
                 <div className="flex-1 flex flex-col box-border h-full overflow-hidden">
                     {/* Clicks automáticos por segundo */}
                     <div className="w-full text-center py-2 mb-2 font-['Karma_Future'] text-lg text-blue-800">
-                        <span className="text-green-600">{cantidadNido}</span> clics/s
+                        <span className="text-green-600">{clicsAutomaticos}</span> clics/s
                     </div>
                     {!haLlegadoACero ? (
                         <Huevo contador={contador} clicarHuevo={clicarHuevo} imagenHuevo={imagenHuevo} />

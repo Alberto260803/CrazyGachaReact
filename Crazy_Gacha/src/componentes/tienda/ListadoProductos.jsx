@@ -16,7 +16,14 @@ const ListadoProductos = ({ tipo, onComprarHuevo, huevoPendiente }) => {
                 </div>
             ) : (
                 productosFiltrados.length > 0 ? (
-                    <div className="w-full">
+                    <div
+                        className="w-full"
+                        style={{
+                            maxHeight: "650px",
+                            overflowY: "auto",
+                            paddingRight: "4px"
+                        }}
+                    >
                         {productosFiltrados.map((producto) => {
                             const listaUsuario = Array.isArray(productosUsuario) ? productosUsuario : [];
                             const productoUsuario = listaUsuario.find(pu => pu.id === producto.id);
