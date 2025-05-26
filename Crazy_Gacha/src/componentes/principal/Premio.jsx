@@ -59,7 +59,7 @@ const Premio = ({ resetearEstado }) => {
                     </div>
 
                     {/* Nombre del premio siempre visible arriba */}
-                    <h2 className={`font-['Karma_Future'] text-center
+                    <h2 className={`font-['Karma-Future'] text-center
                         text-2xl sm:text-3xl md:text-3xl lg:text-4xl
                         font-bold mb-4
                         transition-all duration-300

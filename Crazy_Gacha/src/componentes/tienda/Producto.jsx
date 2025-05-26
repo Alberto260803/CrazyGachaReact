@@ -39,9 +39,9 @@ const Producto = ({ cantidad, datos, onComprarHuevo, huevoPendiente }) => {
                     style={{ filter: !puedeComprar ? 'grayscale(100%)' : 'none' }}
                 />
                 <div>
-                    <h3 className="text-2xl font-['Karma_Future']">{name}</h3>
+                    <h3 className="text-2xl font-['Karma-Future']">{name}</h3>
                     <div className="flex items-center gap-2">
-                        <span className="text-lg text-gray-700 font-['Karma_Future']">{price}</span>
+                        <span className="text-lg text-gray-700 font-['Karma-Future']">{price}</span>
                         <img
                             src={moneda}
                             alt="Moneda"
@@ -50,7 +50,7 @@ const Producto = ({ cantidad, datos, onComprarHuevo, huevoPendiente }) => {
                     </div>
                 </div>
             </div>
-            <div className="text-2xl text-gray-800 font-['Karma_Future']">
+            <div className="text-2xl text-gray-800 font-['Karma-Future']">
                 {type === "Egg" ? (
                     ""
                 ) : (

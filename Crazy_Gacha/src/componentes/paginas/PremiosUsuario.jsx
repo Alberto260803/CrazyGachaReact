@@ -32,7 +32,7 @@ const PremiosUsuario = () => {
             <div className="w-full max-w-[150vh] bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-blue-200 min-h-[80vh] mt-8">
                 
                 {/* Título */}
-                <h2 className="font-['Karma_Future'] text-3xl text-blue-800 font-bold text-center mb-2">
+                <h2 className="font-['Karma-Future'] text-3xl text-blue-800 font-bold text-center mb-2">
                     Inventario de {usuario?.name || 'Usuario'}
                 </h2>
 

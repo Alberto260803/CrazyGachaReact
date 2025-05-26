@@ -11,7 +11,7 @@ const PremioUsuario = ({ datos }) => {
                     alt={datos.name || 'Premio'}
                     className="w-32 h-32 object-contain rounded-lg"
                 />
-                <h3 className="font-['Karma_Future'] text-lg text-gray-800 text-center h-12 flex items-center justify-center">
+                <h3 className="font-['Karma-Future'] text-lg text-gray-800 text-center h-12 flex items-center justify-center">
                     {datos.name || 'Nombre del premio'}
                 </h3>
                 <div className="flex flex-col items-center gap-1">

@@ -25,11 +25,11 @@ const Usuario = () => {
                     className="w-16 h-16 object-contain rounded-full border-2 border-blue-400"
                 />
                 <div className="flex flex-col">
-                    <span className="font-['Karma_Future'] text-lg text-gray-800">
+                    <span className="font-['Karma-Future'] text-lg text-gray-800">
                         Hola, {usuario.name || "Usuario"}
                     </span>
                     <div className="flex items-center gap-2">
-                        <span className="font-['Karma_Future'] text-md text-gray-800">
+                        <span className="font-['Karma-Future'] text-md text-gray-800">
                             {usuario.money ?? 0}
                         </span>
                         <img 

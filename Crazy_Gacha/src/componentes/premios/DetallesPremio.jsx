@@ -24,7 +24,7 @@ const DetallesPremio = ({ premio, onClose }) => {
                 />
 
                 {/* Nombre del premio */}
-                <h2 className="font-['Karma_Future'] text-3xl font-bold text-center text-blue-800 mb-4">
+                <h2 className="font-['Karma-Future'] text-3xl font-bold text-center text-blue-800 mb-4">
                     {premio.name || 'Nombre del premio'}
                 </h2>
 

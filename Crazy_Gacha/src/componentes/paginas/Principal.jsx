@@ -75,7 +75,7 @@ const Principal = () => {
             </div>
 
             {/* Clics por segundo en móvil (fijo arriba) */}
-            <div className="fixed md:hidden top-4 left-1/2 -translate-x-1/2 text-blue-800 text-sm bg-white/80 rounded-lg px-3 py-1 shadow z-50 font-['Karma_Future']">
+            <div className="fixed md:hidden top-4 left-1/2 -translate-x-1/2 text-blue-800 text-sm bg-white/80 rounded-lg px-3 py-1 shadow z-50 font-['Karma-Future']">
                 <span className="text-green-600">{clicsAutomaticos}</span> clics/s
             </div>
 
@@ -127,7 +127,7 @@ const Principal = () => {
                 </div>
 
                 {/* Clics por segundo en escritorio (encima del huevo/premio) */}
-                <div className="hidden md:block text-blue-800 text-lg bg-white/80 rounded-lg px-3 py-1 shadow font-['Karma_Future'] text-center w-fit mx-auto mb-2">
+                <div className="hidden md:block text-blue-800 text-lg bg-white/80 rounded-lg px-3 py-1 shadow font-['Karma-Future'] text-center w-fit mx-auto mb-2">
                     <span className="text-green-600">{clicsAutomaticos}</span> clics/s
                 </div>
 
