@@ -69,8 +69,6 @@ const Principal = () => {
 
     return (
         <div className="h-screen w-screen flex overflow-hidden box-border bg-gradient-to-br from-blue-100 to-blue-300 relative">
-
-            {/* Control de volumen en móvil y escritorio */}
             <ControlVolumen />
 
             {/* Clics por segundo en móvil (fijo arriba) */}

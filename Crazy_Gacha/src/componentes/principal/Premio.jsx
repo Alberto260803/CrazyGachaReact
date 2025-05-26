@@ -60,7 +60,7 @@ const Premio = ({ resetearEstado }) => {
 
                     {/* Nombre del premio siempre visible arriba */}
                     <h2 className={`font-['Karma_Future'] text-center
-                        text-2xl sm:text-3xl md:text-3xl lg:text-5xl
+                        text-2xl sm:text-3xl md:text-3xl lg:text-4xl
                         font-bold mb-4
                         transition-all duration-300
                         break-words max-w-[90%]
@@ -70,7 +70,7 @@ const Premio = ({ resetearEstado }) => {
 
                     {/* Contenido principal con scroll si hace falta */}
                     <div className="flex-1 min-h-0 w-full flex flex-col items-center justify-center overflow-auto">
-                        <div className="w-[70%] max-w-[30vmin] sm:max-w-[40vmin] md:max-w-[50vmin] lg:max-w-[60vmin] aspect-square relative mb-6 shrink-0">
+                        <div className="w-[70%] max-w-[30vmin] sm:max-w-[40vmin] md:max-w-[45vmin] lg:max-w-[50vmin] aspect-square relative mb-6 shrink-0">
                             <span
                                 style={{ writingMode: 'vertical-rl' }}
                                 className={`absolute 
