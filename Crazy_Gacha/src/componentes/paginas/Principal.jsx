@@ -82,7 +82,7 @@ const Principal = () => {
 
             {/* Botón carrito tienda en móvil */}
             <button
-                className="md:hidden absolute top-4 right-4 z-50 p-2 bg-blue-200 rounded"
+                className="md:hidden absolute top-4 right-4 z-50 p-2 bg-blue-200 rounded cursor-pointer"
                 onClick={() => setMostrarTienda(!mostrarTienda)}
             >
                 <img
@@ -94,7 +94,7 @@ const Principal = () => {
 
             {/* Menú Usuario en móvil */}
             {menuAbierto && (
-                <div className="md:hidden absolute top-16 left-4 right-4 bg-white border border-blue-300 rounded-lg shadow-lg z-40 p-4">
+                <div className="md:hidden absolute top-16 left-4 right-4 bg-white border border-blue-300 rounded-lg shadow-lg z-40 p-4 cursor-pointer">
                     <Usuario />
                 </div>
             )}
@@ -124,6 +124,15 @@ const Principal = () => {
                         </div>
                     )}
                 </div>
+            </div>
+
+            {/* Pantalla principal en móvil */}
+            <div className="md:hidden absolute top-32 left-4 right-4 bottom-4 bg-white border border-blue-300 rounded-lg shadow-lg z-30 p-4 overflow-y-auto">
+                {!haLlegadoACero ? (
+                    <Huevo contador={contador} clicarHuevo={clicarHuevo} imagenHuevo={imagenHuevo} />
+                ) : (
+                    <Premio resetearEstado={resetearEstado} />
+                )}
             </div>
 
             {/* Separador solo escritorio */}
