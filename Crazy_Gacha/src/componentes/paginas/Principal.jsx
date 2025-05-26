@@ -69,7 +69,6 @@ const Principal = () => {
 
     return (
         <div className="h-screen w-screen flex overflow-hidden box-border bg-gradient-to-br from-blue-100 to-blue-300 relative">
-            <ControlVolumen />
 
             {/* Clics por segundo en móvil (fijo arriba) */}
             <div className="fixed md:hidden top-4 left-1/2 -translate-x-1/2 text-blue-800 text-sm bg-white/80 rounded-lg px-3 py-1 shadow z-50 font-['Karma_Future']">
@@ -112,8 +111,14 @@ const Principal = () => {
                 </div>
             )}
 
-            {/* Pantalla principal en escritorio */}
+            {/* Pantalla principal en escritorio (SECCIÓN IZQUIERDA) */}
             <div className="hidden md:flex flex-1 flex-col box-border bg-white rounded-lg shadow-lg m-4 p-4 border border-blue-300 overflow-hidden relative">
+                
+                {/* Posicionar ControlVolumen arriba derecha solo en escritorio */}
+                <div className="absolute top-4 right-4 z-50">
+                    <ControlVolumen />
+                </div>
+
                 <div className="p-4 box-border">
                     <Usuario />
                 </div>
@@ -152,6 +157,7 @@ const Principal = () => {
             </div>
         </div>
     );
+
 
 };
 
