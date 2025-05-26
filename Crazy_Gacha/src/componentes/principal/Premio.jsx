@@ -38,11 +38,11 @@ const Premio = ({ resetearEstado }) => {
     return (
         <div
             ref={contenedorRef}
-            className="relative flex flex-col justify-between items-center w-full h-full min-h-0 p-4 sm:p-8 overflow-hidden box-border z-10 mt-8"
+            className="relative flex flex-col justify-between items-center w-full h-full min-h-0 p-2 sm:p-4 md:p-8 overflow-hidden box-border z-10 mt-2 sm:mt-4"
         >
             {cargando ? (
                 <div className="flex items-center justify-center h-full">
-                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-solid"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 sm:h-16 sm:w-16 border-t-4 border-blue-500 border-solid"></div>
                 </div>
             ) : (
                 <>
@@ -58,26 +58,26 @@ const Premio = ({ resetearEstado }) => {
                         />
                     </div>
 
-                    {/* Nombre del premio siempre visible arriba */}
+                    {/* Nombre del premio */}
                     <h2 className={`font-['Karma_Future'] text-center
-                        text-2xl sm:text-3xl md:text-[1rem] lg:text-[1.5rem]
-                        font-bold mb-4
+                        text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl
+                        font-bold mb-2 sm:mb-4
                         transition-all duration-300
-                        break-words max-w-[90%]
+                        break-words max-w-[95%]
                     `}>
                         {premio.name || 'Nombre del premio'}
                     </h2>
 
                     {/* Contenido principal con scroll si hace falta */}
                     <div className="flex-1 min-h-0 w-full flex flex-col items-center justify-center overflow-auto">
-                        <div className="w-[70%] max-w-[50vmin] aspect-square relative mb-6 shrink-0">
+                        <div className="w-[70vw] max-w-[250px] aspect-square relative mb-4 sm:mb-6 shrink-0">
                             <span
                                 style={{ writingMode: 'vertical-rl' }}
                                 className={`absolute 
                                     top-1/2 
-                                    left-[-3vw] sm:left-[-2vw]
+                                    left-[-7vw] sm:left-[-3vw]
                                     transform -translate-y-1/2 rotate-180
-                                    text-[3vw] sm:text-[2.5vw] md:text-[2vw] lg:text-[1.8vw]
+                                    text-[4vw] sm:text-[2vw] md:text-[1.5vw]
                                     font-bold 
                                     uppercase
                                     ${colorRareza}
@@ -90,30 +90,30 @@ const Premio = ({ resetearEstado }) => {
                             <img
                                 src={premio.image || 'https://www.freeiconspng.com/thumbs/error-icon/error-icon-4.png'}
                                 alt="Premio"
-                                className="w-full h-full object-contain p-[1vw]"
+                                className="w-full h-full object-contain p-[2vw] sm:p-[1vw]"
                             />
                         </div>
 
-                        <p className="text-lg md:text-xl lg:text-2xl font-semibold mb-6 flex items-center justify-center gap-2">
+                        <p className="text-base sm:text-lg md:text-xl font-semibold mb-4 sm:mb-6 flex items-center justify-center gap-2">
                             Recompensa: 
                             <span className="flex items-center gap-1">
                                 <span>{premio.reward || 0}</span>
                                 <img 
                                     src={imagenMoneda}
                                     alt="Moneda"
-                                    className="w-[2em] h-[2em] object-contain"
+                                    className="w-[1.5em] h-[1.5em] sm:w-[2em] sm:h-[2em] object-contain"
                                 />
                             </span>
                         </p>
                     </div>
 
                     {/* Botón siempre visible abajo */}
-                    <div className="w-full flex justify-center mt-4">
+                    <div className="w-full flex justify-center mt-2 sm:mt-4">
                         <button
                             onClick={resetearEstado}
                             className="bg-blue-500 text-white 
-                                px-6 py-3 
-                                text-lg md:text-xl
+                                px-4 py-2 sm:px-6 sm:py-3 
+                                text-base sm:text-lg md:text-xl
                                 rounded-lg font-bold 
                                 hover:bg-blue-600 transition-all duration-200
                                 cursor-pointer w-full max-w-xs"

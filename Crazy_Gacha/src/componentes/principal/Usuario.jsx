@@ -16,7 +16,7 @@ const Usuario = () => {
     }
 
     return (
-        <div className="bg-white rounded-lg shadow-md p-4 flex flex-col gap-4 border border-blue-300 w-64 fixed top-4 left-4 z-50">
+        <div className="bg-white rounded-lg shadow-md p-2 md:p-4 flex flex-col gap-2 md:gap-4 border border-blue-300 w-40 md:w-64 fixed top-2 left-2 z-50 md:static">
             {/* Sección superior: Imagen, saludo y dinero */}
             <div className="flex items-center gap-4">
                 <img 

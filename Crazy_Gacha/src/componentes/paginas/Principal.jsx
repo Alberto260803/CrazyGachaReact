@@ -91,16 +91,16 @@ const Principal = () => {
     const huevoPendiente = huevoComprado && !haLlegadoACero && contador !== contadorInicial;
 
     return (
-        <div className="h-screen w-screen flex overflow-hidden box-border bg-gradient-to-br from-blue-100 to-blue-300">
+        <div className="h-screen w-screen flex flex-col md:flex-row overflow-hidden box-border bg-gradient-to-br from-blue-100 to-blue-300">
             {/* Sección Izquierda */}
-            <div className="flex-1 flex flex-col box-border bg-white rounded-lg shadow-lg m-4 p-4 border border-blue-300 overflow-hidden relative">
+            <div className="flex-1 flex flex-col box-border bg-white rounded-lg shadow-lg m-2 md:m-4 p-2 md:p-4 border border-blue-300 overflow-hidden relative">
                 <ControlVolumen />
-                <div className="p-4 box-border">
+                <div className="p-2 md:p-4 box-border">
                     <Usuario />
                 </div>
                 <div className="flex-1 flex flex-col box-border h-full overflow-hidden">
                     {/* Clicks automáticos por segundo */}
-                    <div className="w-full text-center py-2 mb-2 font-['Karma_Future'] text-lg text-blue-800">
+                    <div className="w-full text-center py-1 md:py-2 mb-1 md:mb-2 font-['Karma_Future'] text-base md:text-lg text-blue-800">
                         <span className="text-green-600">{clicsAutomaticos}</span> clics/s
                     </div>
                     {!haLlegadoACero ? (
@@ -112,10 +112,10 @@ const Principal = () => {
                     )}
                 </div>
             </div>
-            {/* Separador */}
-            <div className="h-[95%] w-[2px] bg-gradient-to-b from-blue-400 to-blue-600 my-auto" />
+            {/* Separador solo en escritorio */}
+            <div className="hidden md:block h-[95%] w-[2px] bg-gradient-to-b from-blue-400 to-blue-600 my-auto" />
             {/* Tienda */}
-            <div className="flex-1 bg-white rounded-lg shadow-lg m-4 p-4 border border-blue-300 overflow-hidden">
+            <div className="flex-1 bg-white rounded-lg shadow-lg m-2 md:m-4 p-2 md:p-4 border border-blue-300 overflow-hidden">
                 <Tienda onComprarHuevo={handleComprarHuevo} huevoPendiente={huevoPendiente}/>
             </div>
         </div>
