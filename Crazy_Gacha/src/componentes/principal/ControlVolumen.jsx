@@ -8,14 +8,14 @@ const ControlVolumen = () => {
 
     const handleChange = (e) => {
         const value = Number(e.target.value);
-        setVolumen(value);
+        setVolumen(value / 100);
         if (audioRef.current) {
             audioRef.current.volume = value / 100;
         }
     };
 
     return (
-        <div className="fixed md:absolute top-20 md:top-4 right-4 flex items-center gap-2 bg-white/80 rounded-lg px-3 py-1 shadow z-50">
+        <div className="flex items-center gap-2 bg-white/80 rounded-lg px-3 py-1 shadow">
             <img
                 src="https://cdn-icons-png.flaticon.com/512/483/483365.png"
                 alt="volumen"
