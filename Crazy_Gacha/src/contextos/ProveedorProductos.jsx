@@ -14,7 +14,7 @@ const ProveedorProductos = ({children}) => {
     const {cargando, obtenerDatos} = useDatos();
 
     const obtenerProductos = async () => {
-        const url = "http://localhost:8087/api/shop";
+        const url = "https://crazy-gacha-n85m.onrender.com/api/shop";
         const method = "GET";
 
         const respuesta = await obtenerDatos(url, method, null, token);
@@ -27,7 +27,7 @@ const ProveedorProductos = ({children}) => {
     };
 
     const obtenerProductosUsuario = async () => {
-        const url = `http://localhost:8087/api/users/${idUsuario}/products`;
+        const url = `https://crazy-gacha-n85m.onrender.com/api/users/${idUsuario}/products`;
         const method = "GET";
 
         const respuesta = await obtenerDatos(url, method, null, token);
@@ -40,7 +40,7 @@ const ProveedorProductos = ({children}) => {
     };
 
     const comprarProducto = async (idProducto) => {
-        const url = `http://localhost:8087/api/shop/${idProducto}/buy`;
+        const url = `https://crazy-gacha-n85m.onrender.com/api/shop/${idProducto}/buy`;
         const method = "POST";
 
         await obtenerDatos(url, method, null, token);

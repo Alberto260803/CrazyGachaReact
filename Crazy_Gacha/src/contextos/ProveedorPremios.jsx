@@ -23,7 +23,7 @@ const ProveedorPremios = ({children}) => {
     const {error, cargando, obtenerDatos} = useDatos();
 
     const obtenerPremio = async () => {
-        const url = "http://localhost:8087/api/prizes/random";
+        const url = "https://crazy-gacha-n85m.onrender.com/api/prizes/random";
         const method = "GET";
 
         const respuesta = await obtenerDatos(url, method, null, token);
@@ -36,7 +36,7 @@ const ProveedorPremios = ({children}) => {
     };
 
     const obtenerPremiosUsuario = async () => {
-        const url = `http://localhost:8087/api/users/${idUsuario}/prizes`;
+        const url = `https://crazy-gacha-n85m.onrender.com/api/users/${idUsuario}/prizes`;
         const method = "GET";
 
         const respuesta = await obtenerDatos(url, method, null, token);
@@ -48,7 +48,7 @@ const ProveedorPremios = ({children}) => {
     };
 
     const venderRepetidos = async (idPremio) => {
-        const url = `http://localhost:8087/api/prizes/${idPremio}/sell`;
+        const url = `https://crazy-gacha-n85m.onrender.com/api/prizes/${idPremio}/sell`;
         const method = "POST";
         const respuesta = await obtenerDatos(url, method, null, token);
 
@@ -60,7 +60,7 @@ const ProveedorPremios = ({children}) => {
     };
 
     const venderTodosRepetidos = async () => {
-        const url = `http://localhost:8087/api/prizes/sellAllDuplicates`;
+        const url = `https://crazy-gacha-n85m.onrender.com/api/prizes/sellAllDuplicates`;
         const method = "POST";
         const respuesta = await obtenerDatos(url, method, null, token);
 

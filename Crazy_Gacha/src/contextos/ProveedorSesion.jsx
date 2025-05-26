@@ -28,7 +28,7 @@ const ProveedorSesion = ({children}) => {
     };
 
     const registrarUsuario = async () => {
-        const url = "http://localhost:8087/api/register";
+        const url = "https://crazy-gacha-n85m.onrender.com/api/register";
         const method = "POST";
         const body = usuario;
 
@@ -46,7 +46,7 @@ const ProveedorSesion = ({children}) => {
     };
 
     const iniciarSesion = async () => {
-        const url = "http://localhost:8087/api/login"; 
+        const url = "https://crazy-gacha-n85m.onrender.com/api/login"; 
         const method = "POST";
         const { email, ...body } = usuario;
         const respuesta = await obtenerDatos(url, method, body);
@@ -63,7 +63,7 @@ const ProveedorSesion = ({children}) => {
     };
 
     const cerrarSesion = async () => {
-        const url = "http://localhost:8087/api/logout";
+        const url = "https://crazy-gacha-n85m.onrender.com/api/logout";
         const method = "POST";
 
         await obtenerDatos(url, method, null, token);
@@ -72,7 +72,7 @@ const ProveedorSesion = ({children}) => {
     };
 
     const obtenerUsuario = async (id) => {
-        const url = `http://localhost:8087/api/users/${id}`;
+        const url = `https://crazy-gacha-n85m.onrender.com/api/users/${id}`;
         const method = "GET";
 
         const respuesta = await obtenerDatos(url, method, null, token);
