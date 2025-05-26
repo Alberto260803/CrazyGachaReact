@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@font-face {
+    font-family: "Karma_Future";
+    src: url('./resources/fonts/karma_future.ttf') format('truetype');
+}
