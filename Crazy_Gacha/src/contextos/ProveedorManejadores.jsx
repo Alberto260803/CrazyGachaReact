@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import useProveedorSesion from '../componentes/hooks/useProveedorSesion';
-import imagenHuevoNormal from '../../resources/egg.png';
+import imagenHuevoNormal from '../resources/egg.png';
 
 const contextoManejadores = createContext();
 const ProveedorManejadores = ({children}) => {
