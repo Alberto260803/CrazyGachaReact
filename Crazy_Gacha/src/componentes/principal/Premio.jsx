@@ -60,7 +60,7 @@ const Premio = ({ resetearEstado }) => {
 
                     {/* Nombre del premio siempre visible arriba */}
                     <h2 className={`font-['Karma_Future'] text-center
-                        text-2xl sm:text-3xl md:text-[1rem] lg:text-[1.5rem]
+                        text-2xl sm:text-3xl md:text-2xl lg:text-4xl
                         font-bold mb-4
                         transition-all duration-300
                         break-words max-w-[90%]
@@ -70,14 +70,14 @@ const Premio = ({ resetearEstado }) => {
 
                     {/* Contenido principal con scroll si hace falta */}
                     <div className="flex-1 min-h-0 w-full flex flex-col items-center justify-center overflow-auto">
-                        <div className="w-[70%] max-w-[50vmin] aspect-square relative mb-6 shrink-0">
+                        <div className="w-[70%] max-w-[50vmin] sm:max-w-[40vmin] md:max-w-[30vmin] aspect-square relative mb-6 shrink-0">
                             <span
                                 style={{ writingMode: 'vertical-rl' }}
                                 className={`absolute 
                                     top-1/2 
                                     left-[-3vw] sm:left-[-2vw]
                                     transform -translate-y-1/2 rotate-180
-                                    text-[3vw] sm:text-[2.5vw] md:text-[2vw] lg:text-[1.8vw]
+                                    text-[3vw] sm:text-[2.5vw] md:text-[1.8vw] lg:text-[1.5vw]
                                     font-bold 
                                     uppercase
                                     ${colorRareza}
@@ -94,7 +94,7 @@ const Premio = ({ resetearEstado }) => {
                             />
                         </div>
 
-                        <p className="text-lg md:text-xl lg:text-2xl font-semibold mb-6 flex items-center justify-center gap-2">
+                        <p className="text-lg sm:text-xl md:text-lg lg:text-xl font-semibold mb-6 flex items-center justify-center gap-2 px-2 text-center">
                             Recompensa: 
                             <span className="flex items-center gap-1">
                                 <span>{premio.reward || 0}</span>
@@ -107,16 +107,16 @@ const Premio = ({ resetearEstado }) => {
                         </p>
                     </div>
 
-                    {/* Botón siempre visible abajo */}
-                    <div className="w-full flex justify-center mt-4">
+                    {/* Botón siempre visible abajo, con margen superior para separarlo */}
+                    <div className="w-full flex justify-center mt-6 sm:mt-8">
                         <button
-                            onClick={()=>{
+                            onClick={() => {
                                 resetearEstado();
                                 resetearPremio();
                             }}
                             className="bg-blue-500 text-white 
                                 px-6 py-3 
-                                text-lg md:text-xl
+                                text-lg sm:text-xl
                                 rounded-lg font-bold 
                                 hover:bg-blue-600 transition-all duration-200
                                 cursor-pointer w-full max-w-xs"

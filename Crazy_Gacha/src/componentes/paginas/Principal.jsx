@@ -73,14 +73,14 @@ const Principal = () => {
             {/* Control de volumen en móvil y escritorio */}
             <ControlVolumen />
 
-            {/* Clics por segundo (siempre visible) */}
-            <div className="fixed md:absolute top-4 left-1/2 -translate-x-1/2 text-blue-800 text-sm md:text-lg bg-white/80 rounded-lg px-3 py-1 shadow z-50 font-['Karma_Future']">
+            {/* Clics por segundo en móvil (fijo arriba) */}
+            <div className="fixed md:hidden top-4 left-1/2 -translate-x-1/2 text-blue-800 text-sm bg-white/80 rounded-lg px-3 py-1 shadow z-50 font-['Karma_Future']">
                 <span className="text-green-600">{clicsAutomaticos}</span> clics/s
             </div>
 
             {/* Botón hamburguesa para usuario en móvil */}
             <button
-                className="md:hidden absolute top-4 left-4 z-50 p-2 bg-blue-200 rounded"
+                className="lg:hidden absolute top-4 left-4 z-50 p-2 bg-blue-200 rounded"
                 onClick={() => setMenuAbierto(!menuAbierto)}
             >
                 <div className="w-6 h-0.5 bg-blue-800 mb-1"></div>
@@ -119,6 +119,12 @@ const Principal = () => {
                 <div className="p-4 box-border">
                     <Usuario />
                 </div>
+
+                {/* Clics por segundo en escritorio (encima del huevo/premio) */}
+                <div className="hidden md:block text-blue-800 text-lg bg-white/80 rounded-lg px-3 py-1 shadow font-['Karma_Future'] text-center w-fit mx-auto mb-2">
+                    <span className="text-green-600">{clicsAutomaticos}</span> clics/s
+                </div>
+
                 <div className="flex-1 flex flex-col box-border h-full overflow-hidden">
                     {!haLlegadoACero ? (
                         <Huevo contador={contador} clicarHuevo={clicarHuevo} imagenHuevo={imagenHuevo} />
@@ -148,6 +154,7 @@ const Principal = () => {
             </div>
         </div>
     );
+
 };
 
 export default Principal;
