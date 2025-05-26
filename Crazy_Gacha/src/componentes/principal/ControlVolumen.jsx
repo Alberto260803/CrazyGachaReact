@@ -15,14 +15,7 @@ const ControlVolumen = () => {
     };
 
     return (
-        <div className="
-            fixed md:absolute 
-            top-4 md:top-4 
-            right-4 
-            flex items-center gap-2 
-            bg-white/80 rounded-lg px-3 py-1 
-            shadow z-50
-        ">
+        <div className="fixed md:absolute top-20 md:top-4 right-4 flex items-center gap-2 bg-white/80 rounded-lg px-3 py-1 shadow z-50">
             <img
                 src="https://cdn-icons-png.flaticon.com/512/483/483365.png"
                 alt="volumen"
@@ -33,7 +26,7 @@ const ControlVolumen = () => {
                 min="0"
                 max="100"
                 step="1"
-                value={volumen}
+                value={volumen * 100}
                 onChange={handleChange}
                 className="w-24 accent-blue-500 cursor-pointer"
             />
