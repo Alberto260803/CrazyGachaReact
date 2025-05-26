@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { contextoAudio } from "../../contextos/ProveedorAudio";
 import useProveedorManejadores from "../hooks/useProveedorManejadores";
 
@@ -10,7 +10,7 @@ const ControlVolumen = () => {
         const value = Number(e.target.value);
         setVolumen(value);
         if (audioRef.current) {
-            audioRef.current.volume = value;
+            audioRef.current.volume = value / 100;
         }
     };
 
@@ -24,8 +24,8 @@ const ControlVolumen = () => {
             <input
                 type="range"
                 min="0"
-                max="1"
-                step="0.01"
+                max="100"
+                step="1"
                 value={volumen}
                 onChange={handleChange}
                 className="w-24 accent-blue-500 cursor-pointer"
