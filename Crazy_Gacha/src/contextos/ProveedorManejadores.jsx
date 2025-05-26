@@ -5,7 +5,7 @@ import imagenHuevoNormal from '../resources/egg.png';
 
 const contextoManejadores = createContext();
 const ProveedorManejadores = ({children}) => {
-    const {sesionIniciada} = useProveedorSesion()
+    const {sesionIniciada} = useProveedorSesion();
 
     const [modoNocturno, setModoNocturno] = useState(false);
     const [volumen, setVolumen] = useState(0.5);

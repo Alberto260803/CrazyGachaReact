@@ -15,7 +15,6 @@ const ProveedorPremios = ({children}) => {
     };
 
     const premiosIniciales = [];
-    const  vendidosIniciales = [];
 
     const [premiosUsuario, setPremiosUsuario] = useState(premiosIniciales);
     const [premio, setPremio] = useState(premioInicial);
@@ -71,6 +70,10 @@ const ProveedorPremios = ({children}) => {
         await obtenerUsuario(idUsuario);
         await obtenerPremiosUsuario();
         return { vendidos: respuesta.vendidos };
+    };
+
+    const resetearPremio = () => {
+        setPremio(premioInicial);
     }
 
     const datosProveer = {
@@ -82,6 +85,7 @@ const ProveedorPremios = ({children}) => {
         venderRepetidos,
         venderTodosRepetidos,
         error,
+        resetearPremio
     }
 
     return (

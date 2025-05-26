@@ -4,7 +4,7 @@ import ReactConfetti from 'react-confetti';
 import imagenMoneda from '../../resources/moneda.png';
 
 const Premio = ({ resetearEstado }) => {
-    const { premio, cargando } = useProveedorPremios();
+    const { premio, cargando, resetearPremio } = useProveedorPremios();
     const contenedorRef = useRef(null);
     const [dimensiones, setDimensiones] = useState({ width: 0, height: 0 });
 
@@ -110,7 +110,10 @@ const Premio = ({ resetearEstado }) => {
                     {/* Botón siempre visible abajo */}
                     <div className="w-full flex justify-center mt-4">
                         <button
-                            onClick={resetearEstado}
+                            onClick={()=>{
+                                resetearEstado();
+                                resetearPremio();
+                            }}
                             className="bg-blue-500 text-white 
                                 px-6 py-3 
                                 text-lg md:text-xl
