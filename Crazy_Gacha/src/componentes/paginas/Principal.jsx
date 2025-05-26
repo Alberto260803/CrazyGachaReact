@@ -26,6 +26,8 @@ const Principal = () => {
     } = useProveedorManejadores();
 
     const [menuAbierto, setMenuAbierto] = useState(false);
+    const [mostrarTienda, setMostrarTienda] = useState(false);
+
 
     const clicarHuevo = () => {
         if (contador > 0 && !comprando) {
@@ -68,7 +70,7 @@ const Principal = () => {
 
     return (
         <div className="h-screen w-screen flex overflow-hidden box-border bg-gradient-to-br from-blue-100 to-blue-300 relative">
-            {/* Botón hamburguesa visible solo en móvil */}
+            {/* Botón hamburguesa para usuario en móvil */}
             <button
                 className="md:hidden absolute top-4 left-4 z-50 p-2 bg-blue-200 rounded"
                 onClick={() => setMenuAbierto(!menuAbierto)}
@@ -78,14 +80,33 @@ const Principal = () => {
                 <div className="w-6 h-0.5 bg-blue-800"></div>
             </button>
 
-            {/* Menú flotante móvil */}
+            {/* Botón carrito tienda en móvil */}
+            <button
+                className="md:hidden absolute top-4 right-4 z-50 p-2 bg-blue-200 rounded"
+                onClick={() => setMostrarTienda(!mostrarTienda)}
+            >
+                <img
+                    src="https://cdn-icons-png.flaticon.com/512/107/107831.png"
+                    alt="Carrito"
+                    className="w-6 h-6"
+                />
+            </button>
+
+            {/* Menú Usuario en móvil */}
             {menuAbierto && (
                 <div className="md:hidden absolute top-16 left-4 right-4 bg-white border border-blue-300 rounded-lg shadow-lg z-40 p-4">
                     <Usuario />
                 </div>
             )}
 
-            {/* Sección Izquierda */}
+            {/* Tienda en móvil */}
+            {mostrarTienda && (
+                <div className="md:hidden absolute top-16 left-4 right-4 bg-white border border-blue-300 rounded-lg shadow-lg z-40 p-4">
+                    <Tienda onComprarHuevo={handleComprarHuevo} huevoPendiente={huevoPendiente} />
+                </div>
+            )}
+
+            {/* Pantalla principal en escritorio */}
             <div className="hidden md:flex flex-1 flex-col box-border bg-white rounded-lg shadow-lg m-4 p-4 border border-blue-300 overflow-hidden relative">
                 <ControlVolumen />
                 <div className="p-4 box-border">
@@ -105,15 +126,16 @@ const Principal = () => {
                 </div>
             </div>
 
-            {/* Separador vertical solo en pantallas grandes */}
+            {/* Separador solo escritorio */}
             <div className="hidden md:block h-[95%] w-[2px] bg-gradient-to-b from-blue-400 to-blue-600 my-auto" />
 
-            {/* Tienda (visible siempre) */}
-            <div className="flex-1 bg-white rounded-lg shadow-lg m-4 p-4 border border-blue-300 overflow-hidden">
+            {/* Tienda escritorio */}
+            <div className="hidden md:block flex-1 bg-white rounded-lg shadow-lg m-4 p-4 border border-blue-300 overflow-hidden">
                 <Tienda onComprarHuevo={handleComprarHuevo} huevoPendiente={huevoPendiente} />
             </div>
         </div>
     );
+
 };
 
 export default Principal;
