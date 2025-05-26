@@ -28,7 +28,6 @@ const Principal = () => {
     const [menuAbierto, setMenuAbierto] = useState(false);
     const [mostrarTienda, setMostrarTienda] = useState(false);
 
-
     const clicarHuevo = () => {
         if (contador > 0 && !comprando) {
             let clics = multiplicadorClics;
@@ -70,6 +69,15 @@ const Principal = () => {
 
     return (
         <div className="h-screen w-screen flex overflow-hidden box-border bg-gradient-to-br from-blue-100 to-blue-300 relative">
+
+            {/* Control de volumen en móvil y escritorio */}
+            <ControlVolumen />
+
+            {/* Clics por segundo (siempre visible) */}
+            <div className="fixed md:absolute top-4 left-1/2 -translate-x-1/2 text-blue-800 text-sm md:text-lg bg-white/80 rounded-lg px-3 py-1 shadow z-50 font-['Karma_Future']">
+                <span className="text-green-600">{clicsAutomaticos}</span> clics/s
+            </div>
+
             {/* Botón hamburguesa para usuario en móvil */}
             <button
                 className="md:hidden absolute top-4 left-4 z-50 p-2 bg-blue-200 rounded"
@@ -108,14 +116,10 @@ const Principal = () => {
 
             {/* Pantalla principal en escritorio */}
             <div className="hidden md:flex flex-1 flex-col box-border bg-white rounded-lg shadow-lg m-4 p-4 border border-blue-300 overflow-hidden relative">
-                <ControlVolumen />
                 <div className="p-4 box-border">
                     <Usuario />
                 </div>
                 <div className="flex-1 flex flex-col box-border h-full overflow-hidden">
-                    <div className="w-full text-center py-2 mb-2 font-['Karma_Future'] text-lg text-blue-800">
-                        <span className="text-green-600">{clicsAutomaticos}</span> clics/s
-                    </div>
                     {!haLlegadoACero ? (
                         <Huevo contador={contador} clicarHuevo={clicarHuevo} imagenHuevo={imagenHuevo} />
                     ) : (
@@ -144,7 +148,6 @@ const Principal = () => {
             </div>
         </div>
     );
-
 };
 
 export default Principal;
