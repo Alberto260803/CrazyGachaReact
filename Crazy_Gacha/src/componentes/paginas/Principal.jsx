@@ -28,7 +28,7 @@ const Principal = () => {
     const [menuAbierto, setMenuAbierto] = useState(false);
 
     const clicarHuevo = () => {
-        if (contador > 0) {
+        if (contador > 0 && !comprando) {
             let clics = multiplicadorClics;
             if (cantidadCritico > 0) {
                 const probabilidad = 0.1 * cantidadCritico;
@@ -64,7 +64,7 @@ const Principal = () => {
         obtenerProductosUsuario();
     }, []);
 
-    const huevoPendiente = huevoComprado && !haLlegadoACero && contador !== 10;
+    const huevoPendiente = huevoComprado && !haLlegadoACero && imagenHuevo !== imagenHuevoNormal;
 
     return (
         <div className="h-screen w-screen flex overflow-hidden box-border bg-gradient-to-br from-blue-100 to-blue-300 relative">
