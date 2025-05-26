@@ -22,7 +22,7 @@ const Huevo = ({ contador, clicarHuevo, imagenHuevo }) => {
     return (
         <div className="flex flex-col items-center justify-center mt-12 flex-grow">
             {/* Contador */}
-            <div className="font-['Karma_Future'] text-6xl font-bold mb-8">{contador}</div>
+            <div className="font-karma-future text-6xl font-bold mb-8">{contador}</div>
             {/* Huevo */}
             <div
                 className={`w-[65vmin] h-[55vmin] cursor-pointer flex items-center justify-center ${
