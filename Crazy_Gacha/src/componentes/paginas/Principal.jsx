@@ -8,24 +8,31 @@ import Usuario from '../principal/Usuario.jsx';
 import useEfectosProductos from '../hooks/useEfectosProductos.js';
 import ControlVolumen from '../principal/ControlVolumen.jsx';
 import imagenHuevoNormal from '../../resources/egg.png';
+import useProveedorManejadores from '../hooks/useProveedorManejadores.js';
 
 const Principal = () => {
     const { obtenerPremio } = useProveedorPremios();
     const { obtenerProductos, obtenerProductosUsuario, productosUsuario, comprando } = useProveedorProdutos();
     const { multiplicadorClics, clicsAutomaticos, cantidadCritico } = useEfectosProductos(productosUsuario);
-
-    const contadorInicial = 10;
-    const [contador, setContador] = useState(contadorInicial);
-    const [haLlegadoACero, setHaLlegadoACero] = useState(false);
-    const [imagenHuevo, setImagenHuevo] = useState(imagenHuevoNormal);
-    const [pendienteImagenHuevo, setPendienteImagenHuevo] = useState(null);
-    const [pendienteContador, setPendienteContador] = useState(null);
-    const [huevoComprado, setHuevoComprado] = useState(false);
+    const {
+        contador,
+        setContador,
+        haLlegadoACero,
+        setHaLlegadoACero,
+        imagenHuevo,
+        setImagenHuevo,
+        pendienteImagenHuevo,
+        setPendienteImagenHuevo,
+        pendienteContador,
+        setPendienteContador,
+        huevoComprado,
+        setHuevoComprado,
+    } = useProveedorManejadores();
 
     // Cuando el usuario compra un huevo, actualiza la imagen
     const handleComprarHuevo = (nuevoHuevo) => {
         setHuevoComprado(true);
-        let nuevoContador = contadorInicial;
+        let nuevoContador = 10;
         if (nuevoHuevo.name === "Huevo raro") nuevoContador = 50;
         if (nuevoHuevo.name === "Huevo especial") nuevoContador = 100;
         if (nuevoHuevo.name === "Huevo épico") nuevoContador = 250;
@@ -45,7 +52,7 @@ const Principal = () => {
     const resetearEstado = () => {
         setHaLlegadoACero(false);
         setImagenHuevo(pendienteImagenHuevo || imagenHuevoNormal);
-        setContador(pendienteContador || contadorInicial);
+        setContador(pendienteContador || 10);
         setPendienteImagenHuevo(null);
         setPendienteContador(null);
     };
@@ -88,7 +95,7 @@ const Principal = () => {
         obtenerProductosUsuario();
     }, []);
 
-    const huevoPendiente = huevoComprado && !haLlegadoACero && contador !== contadorInicial;
+    const huevoPendiente = huevoComprado && !haLlegadoACero;
 
     return (
         <div className="h-screen w-screen flex overflow-hidden box-border bg-gradient-to-br from-blue-100 to-blue-300">

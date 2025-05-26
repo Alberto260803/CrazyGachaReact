@@ -9,6 +9,14 @@ const ProveedorManejadores = ({children}) => {
     const [modoNocturno, setModoNocturno] = useState(false);
     const [volumen, setVolumen] = useState(0.5);
 
+    const contadorInicial = 10;
+    const [contador, setContador] = useState(contadorInicial);
+    const [haLlegadoACero, setHaLlegadoACero] = useState(false);
+    const [imagenHuevo, setImagenHuevo] = useState(imagenHuevoNormal);
+    const [pendienteImagenHuevo, setPendienteImagenHuevo] = useState(null);
+    const [pendienteContador, setPendienteContador] = useState(null);
+    const [huevoComprado, setHuevoComprado] = useState(false);
+
     const location = useLocation();
 
     useEffect(() => {
@@ -28,7 +36,19 @@ const ProveedorManejadores = ({children}) => {
         modoNocturno,
         setModoNocturno,
         volumen,
-        setVolumen
+        setVolumen,
+        contador,
+        setContador,
+        haLlegadoACero,
+        setHaLlegadoACero,
+        imagenHuevo,
+        setImagenHuevo,
+        pendienteImagenHuevo,
+        setPendienteImagenHuevo,
+        pendienteContador,
+        setPendienteContador,
+        huevoComprado,
+        setHuevoComprado
     }
 
     return (
