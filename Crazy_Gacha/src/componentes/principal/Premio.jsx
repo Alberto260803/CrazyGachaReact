@@ -70,7 +70,7 @@ const Premio = ({ resetearEstado }) => {
 
                     {/* Contenido principal con scroll si hace falta */}
                     <div className="flex-1 min-h-0 w-full flex flex-col items-center justify-center overflow-auto">
-                        <div className="w-[70%] max-w-[30vmin] sm:max-w-[40vmin] md:max-w-[45vmin] lg:max-w-[50vmin] aspect-square relative mb-6 shrink-0">
+                        <div className="w-[70%] max-w-[30vmin] sm:max-w-[35vmin] md:max-w-[40vmin] lg:max-w-[45vmin] aspect-square relative mb-6 shrink-0">
                             <span
                                 style={{ writingMode: 'vertical-rl' }}
                                 className={`absolute 
