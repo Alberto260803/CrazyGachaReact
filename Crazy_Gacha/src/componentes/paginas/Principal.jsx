@@ -20,42 +20,10 @@ const Principal = () => {
         haLlegadoACero,
         setHaLlegadoACero,
         imagenHuevo,
-        setImagenHuevo,
-        pendienteImagenHuevo,
-        setPendienteImagenHuevo,
-        pendienteContador,
-        setPendienteContador,
         huevoComprado,
-        setHuevoComprado,
+        handleComprarHuevo,
+        resetearEstado
     } = useProveedorManejadores();
-
-    // Cuando el usuario compra un huevo, actualiza la imagen
-    const handleComprarHuevo = (nuevoHuevo) => {
-        setHuevoComprado(true);
-        let nuevoContador = 10;
-        if (nuevoHuevo.name === "Huevo raro") nuevoContador = 50;
-        if (nuevoHuevo.name === "Huevo especial") nuevoContador = 100;
-        if (nuevoHuevo.name === "Huevo épico") nuevoContador = 250;
-        if (nuevoHuevo.name === "Huevo legendario") nuevoContador = 500;
-        const nuevaImagen = nuevoHuevo.linkImage || imagenHuevoNormal;
-
-        if (!haLlegadoACero) {
-            setContador(nuevoContador);
-            setImagenHuevo(nuevaImagen);
-        } else {
-            setPendienteContador(nuevoContador);
-            setPendienteImagenHuevo(nuevaImagen);
-        }
-    };
-
-    // Cuando se recibe el premio, resetea la imagen
-    const resetearEstado = () => {
-        setHaLlegadoACero(false);
-        setImagenHuevo(pendienteImagenHuevo || imagenHuevoNormal);
-        setContador(pendienteContador || 10);
-        setPendienteImagenHuevo(null);
-        setPendienteContador(null);
-    };
 
     const clicarHuevo = () => {
         if (contador > 0) {
