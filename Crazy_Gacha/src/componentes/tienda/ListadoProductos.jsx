@@ -17,12 +17,7 @@ const ListadoProductos = ({ tipo, onComprarHuevo, huevoPendiente }) => {
             ) : (
                 productosFiltrados.length > 0 ? (
                     <div
-                        className="w-full"
-                        style={{
-                            maxHeight: "650px",
-                            overflowY: "auto",
-                            paddingRight: "4px"
-                        }}
+                        className="w-full max-h-[70vh] overflow-y-auto pr-1"
                     >
                         {productosFiltrados.map((producto) => {
                             const listaUsuario = Array.isArray(productosUsuario) ? productosUsuario : [];
