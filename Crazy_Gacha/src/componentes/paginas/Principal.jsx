@@ -70,7 +70,7 @@ const Principal = () => {
     return (
         <div className="h-screen w-screen flex overflow-hidden box-border bg-gradient-to-br from-blue-100 to-blue-300 relative">
             {/* ControlVolumen SOLO móvil */}
-            <div className="md:hidden absolute top-4 right-4 z-50">
+            <div className="md:hidden absolute top-12 right-4 z-50">
                 <ControlVolumen />
             </div>
 
