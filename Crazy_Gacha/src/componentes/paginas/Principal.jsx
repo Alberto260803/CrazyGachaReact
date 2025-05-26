@@ -11,7 +11,7 @@ import imagenHuevoNormal from '../../resources/egg.png';
 import useProveedorManejadores from '../hooks/useProveedorManejadores.js';
 
 const Principal = () => {
-    const { obtenerPremio } = useProveedorPremios();
+    const { obtenerPremio, premio } = useProveedorPremios();
     const { obtenerProductos, obtenerProductosUsuario, productosUsuario, comprando } = useProveedorProdutos();
     const { multiplicadorClics, clicsAutomaticos, cantidadCritico } = useEfectosProductos(productosUsuario);
     const {
@@ -50,21 +50,21 @@ const Principal = () => {
     }, [clicsAutomaticos, contador, haLlegadoACero, comprando]);
 
     useEffect(() => {
-        if (contador === 0) {
+        if (contador === 0 && !premio?.name) {
             const timeout = setTimeout(() => {
                 setHaLlegadoACero(true);
                 obtenerPremio();
             }, 1000);
             return () => clearTimeout(timeout);
         }
-    }, [contador]);
+    }, [contador, premio]);
 
     useEffect(() => {
         obtenerProductos();
         obtenerProductosUsuario();
     }, []);
 
-    const huevoPendiente = huevoComprado && !haLlegadoACero;
+    const huevoPendiente = huevoComprado && !haLlegadoACero && contador !== 10;
 
     return (
         <div className="h-screen w-screen flex overflow-hidden box-border bg-gradient-to-br from-blue-100 to-blue-300 relative">
