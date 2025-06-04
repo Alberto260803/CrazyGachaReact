@@ -20,6 +20,7 @@ const useDatos = () => {
             if (informacion && informacion.data !== null) {
                 setDatos(informacion);
             } else {
+                console.log("Hola, no se encontraron datos" + informacion);
                 setError(informacion.message || "Error desconocido");
             }
             return informacion; // Retornar la información para su uso posterior

@@ -98,7 +98,7 @@ const IniciarSesionIzquierda = () => {
                     {cargando && <p>Iniciando sesión...</p>}
                     {error && <p style={{ color: "red" }}>Error: {error}</p>}
                     {Array.isArray(datos) && datos.length > 0 && (
-                        <p style={{ color: "green" }}>Usuario registrado correctamente</p>
+                        <p style={{ color: "green" }}>Usuario logueado correctamente</p>
                     )}
                 </div>
             </div>
