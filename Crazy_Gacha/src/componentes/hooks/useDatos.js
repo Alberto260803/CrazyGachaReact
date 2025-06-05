@@ -20,7 +20,6 @@ const useDatos = () => {
             if (informacion && informacion.data !== null) {
                 setDatos(informacion);
             } else {
-                console.log("Información no válida:", informacion);
                 setError(informacion.message || "Error desconocido");
             }
             return informacion; // Retornar la información para su uso posterior
