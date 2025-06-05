@@ -3,7 +3,7 @@ const gestionarDatos = async (url, method, body = null, token = "") => {
     const headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
-        ...(token ? { "Authorization": `Bearer ${token}` } : {}) // Agregar token si existe
+        ...(token ? { "Authorization": `Bearer ${token}` } : {})
     };
 
     const requestOptions = {
@@ -11,20 +11,17 @@ const gestionarDatos = async (url, method, body = null, token = "") => {
         headers,
         body: body ? JSON.stringify(body) : null,
     };
-    
-    try {
-        const response = await fetch(url, requestOptions);
 
-        if (!response.ok) {
-            const errorDetails = await response.json();
-            return { success: false, message: `Error: ${response.status} - ${response.statusText}`, details: errorDetails };
-        } else {
-            return await response.json();
-        }
-    } catch (error) {
-        return { success: false, message: `Error: ${error.message}` };
+    const response = await fetch(url, requestOptions);
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw data; // esto activa el catch en obtenerDatos()
     }
+
+    return data;
 };
+
 
 
 export {gestionarDatos}
