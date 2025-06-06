@@ -15,18 +15,3 @@
 - 📱 Fully responsive design
 
 ---
-
-## 🛠️ Technologies Used
-
-### Frontend
-- [React 19](https://react.dev/)
-- [React Router DOM 7](https://reactrouter.com/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [tw-elements-react](https://tw-elements.com/docs/react/)
-- Vite for bundling
-
-### Backend
-- [Laravel 10+](https://laravel.com/)
-- Sanctum for API authentication
-- MySQL database
-- RESTful API
