@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react'
 import useDatos from '../componentes/hooks/useDatos.js';
 import useProveedorSesion from '../componentes/hooks/useProveedorSesion.js';
+import { URL_LOCAL } from '../biblioteca/biblioteca.js';
 
 const contextoPremios = createContext();
 const ProveedorPremios = ({children}) => {
@@ -22,7 +23,7 @@ const ProveedorPremios = ({children}) => {
     const {error, cargando, obtenerDatos} = useDatos();
 
     const obtenerPremio = async () => {
-        const url = "https://crazy-gacha-n85m.onrender.com/api/prizes/random";
+        const url = `${URL_LOCAL}/api/prizes/random`;
         const method = "GET";
 
         const respuesta = await obtenerDatos(url, method, null, token);
@@ -35,7 +36,7 @@ const ProveedorPremios = ({children}) => {
     };
 
     const obtenerPremiosUsuario = async () => {
-        const url = `https://crazy-gacha-n85m.onrender.com/api/users/${idUsuario}/prizes`;
+        const url = `${URL_LOCAL}/api/users/${idUsuario}/prizes`;
         const method = "GET";
 
         const respuesta = await obtenerDatos(url, method, null, token);
@@ -47,7 +48,7 @@ const ProveedorPremios = ({children}) => {
     };
 
     const venderRepetidos = async (idPremio) => {
-        const url = `https://crazy-gacha-n85m.onrender.com/api/prizes/${idPremio}/sell`;
+        const url = `${URL_LOCAL}/api/prizes/${idPremio}/sell`;
         const method = "POST";
         const respuesta = await obtenerDatos(url, method, null, token);
 
@@ -59,7 +60,7 @@ const ProveedorPremios = ({children}) => {
     };
 
     const venderTodosRepetidos = async () => {
-        const url = `https://crazy-gacha-n85m.onrender.com/api/prizes/sellAllDuplicates`;
+        const url = `${URL_LOCAL}/api/prizes/sellAllDuplicates`;
         const method = "POST";
         const respuesta = await obtenerDatos(url, method, null, token);
 

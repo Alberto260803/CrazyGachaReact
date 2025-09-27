@@ -22,6 +22,8 @@ const gestionarDatos = async (url, method, body = null, token = "") => {
     return data;
 };
 
+const URL_LOCAL = "http://localhost:8087";
 
 
-export {gestionarDatos}
+
+export {gestionarDatos, URL_LOCAL};

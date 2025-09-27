@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react'
 import useProveedorSesion from '../componentes/hooks/useProveedorSesion.js';
 import useDatos from '../componentes/hooks/useDatos.js';
+import { URL_LOCAL } from '../biblioteca/biblioteca.js';
 
 const contextoProductos = createContext();
 const ProveedorProductos = ({children}) => {
@@ -14,7 +15,7 @@ const ProveedorProductos = ({children}) => {
     const {cargando, obtenerDatos} = useDatos();
 
     const obtenerProductos = async () => {
-        const url = "https://crazy-gacha-n85m.onrender.com/api/shop";
+        const url = `${URL_LOCAL}/api/shop`;
         const method = "GET";
 
         const respuesta = await obtenerDatos(url, method, null, token);
@@ -27,7 +28,7 @@ const ProveedorProductos = ({children}) => {
     };
 
     const obtenerProductosUsuario = async () => {
-        const url = `https://crazy-gacha-n85m.onrender.com/api/users/${idUsuario}/products`;
+        const url = `${URL_LOCAL}/api/users/${idUsuario}/products`;
         const method = "GET";
 
         const respuesta = await obtenerDatos(url, method, null, token);
@@ -40,7 +41,7 @@ const ProveedorProductos = ({children}) => {
     };
 
     const comprarProducto = async (idProducto) => {
-        const url = `https://crazy-gacha-n85m.onrender.com/api/shop/${idProducto}/buy`;
+        const url = `${URL_LOCAL}/api/shop/${idProducto}/buy`;
         const method = "POST";
 
         await obtenerDatos(url, method, null, token);

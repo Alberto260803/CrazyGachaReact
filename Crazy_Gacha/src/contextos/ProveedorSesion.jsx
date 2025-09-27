@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react'
 import useDatos from '../componentes/hooks/useDatos.js';
 import { useNavigate } from 'react-router-dom';
+import { URL_LOCAL } from '../biblioteca/biblioteca.js';
 
 const contextoSesion = createContext();
 const ProveedorSesion = ({children}) => {
@@ -28,7 +29,7 @@ const ProveedorSesion = ({children}) => {
     };
 
     const registrarUsuario = async () => {
-        const url = "https://crazy-gacha-n85m.onrender.com/api/register";
+        const url = `${URL_LOCAL}/api/register`;
         const method = "POST";
         const body = usuario;
 
@@ -46,7 +47,7 @@ const ProveedorSesion = ({children}) => {
     };
 
     const iniciarSesion = async () => {
-        const url = "https://crazy-gacha-n85m.onrender.com/api/login"; 
+        const url = `${URL_LOCAL}/api/login`;
         const method = "POST";
         const { email, ...body } = usuario;
         const respuesta = await obtenerDatos(url, method, body);
@@ -63,7 +64,7 @@ const ProveedorSesion = ({children}) => {
     };
 
     const cerrarSesion = async () => {
-        const url = "https://crazy-gacha-n85m.onrender.com/api/logout";
+        const url = `${URL_LOCAL}/api/logout`;
         const method = "POST";
 
         await obtenerDatos(url, method, null, token);
@@ -72,7 +73,7 @@ const ProveedorSesion = ({children}) => {
     };
 
     const obtenerUsuario = async (id) => {
-        const url = `https://crazy-gacha-n85m.onrender.com/api/users/${id}`;
+        const url = `${URL_LOCAL}/api/users/${id}`;
         const method = "GET";
 
         const respuesta = await obtenerDatos(url, method, null, token);

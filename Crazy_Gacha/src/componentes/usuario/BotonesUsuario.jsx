@@ -1,5 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useProveedorSesion from '../hooks/useProveedorSesion.js';
 import useProveedorPremios from '../hooks/useProveedorPremios.js';
 import useProveedorModoNocturno from '../hooks/useProveedorManejadores.js';
@@ -18,8 +17,16 @@ const BotonesUsuario = () => {
 
     return (
         <>
-            {/* Botones de inventario, cerrar sesión y modo nocturno */}
+            {/* Botones de usuario */}
             <div className="flex items-center justify-center gap-4">
+                <img
+                    src="https://cdn-icons-png.flaticon.com/512/2/2144.png"
+                    alt="Inicio"
+                    onClick={() => {
+                        navegar('/');
+                    }}
+                    className="w-8 h-8 cursor-pointer hover:scale-110 transition-transform duration-200"
+                />
                 {/* Ícono de inventario */}
                 <img
                     src="https://cdn-icons-png.flaticon.com/512/2263/2263418.png"
@@ -38,6 +45,14 @@ const BotonesUsuario = () => {
                     }
                     alt={modoNocturno ? "Modo diurno" : "Modo nocturno"}
                     onClick={() => setModoNocturno(!modoNocturno)}
+                    className="w-8 h-8 cursor-pointer hover:scale-110 transition-transform duration-200"
+                />
+                <img
+                    src="https://images.vexels.com/media/users/3/151205/isolated/preview/8857efb275fbf2435db40a222d05b1e6-icono-de-rueda-de-ruleta.png"
+                    alt="Ruleta"
+                    onClick={() => {
+                        navegar('/ruleta');
+                    }}
                     className="w-8 h-8 cursor-pointer hover:scale-110 transition-transform duration-200"
                 />
                 {/* Botón de cerrar sesión */}

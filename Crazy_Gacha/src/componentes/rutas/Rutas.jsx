@@ -7,6 +7,7 @@ import PremiosUsuario from '../paginas/PremiosUsuario.jsx';
 import { useEffect } from 'react';
 import useProveedorAudio from '../hooks/useProveedorAudio.js';
 import Error from '../paginas/Error.jsx';
+import Ruleta from '../paginas/Ruleta.jsx';
 
 const Rutas = () => {
     const { sesionIniciada } = useProveedorSesion();
@@ -27,6 +28,7 @@ const Rutas = () => {
             <Route path="/register" element={<Registrar />} />
             <Route path="/login" element={<IniciarSesion />} />
             <Route path="/inventario" element={sesionIniciada ? <PremiosUsuario /> : <Error/>} />
+            <Route path="/ruleta" element={sesionIniciada ? <Ruleta /> : <IniciarSesion />} />
             <Route path="*" element={<Error />} />
         </Routes>
     );
